@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navigation, siteName } from "@/content/site";
+import { footerNavigation, siteName } from "@/content/site";
 import styles from "./site.module.css";
 
 export function Footer() {
@@ -11,12 +11,12 @@ export function Footer() {
             {siteName}
           </Link>
           <p className={styles.footerDescription}>
-            Системный маркетинг для частной медицины: от спроса до пациента и оплаты.
+            Системный маркетинг для частных клиник и врачей.
           </p>
         </div>
 
         <nav className={styles.footerNav} aria-label="Навигация в подвале">
-          {navigation.map((item) => (
+          {footerNavigation.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
             </Link>
@@ -24,11 +24,15 @@ export function Footer() {
         </nav>
 
         <div className={styles.footerMeta}>
-          <p>Контакты и реквизиты будут добавлены после подтверждения команды.</p>
+          <div className={styles.footerContacts}>
+            <span>+7 (000) 000-00-00</span>
+            <span>WhatsApp: @kmedical</span>
+            <span>Telegram: @kmedical</span>
+          </div>
+          <p>Привлечение пациентов · сайты и поиск · репутация · продвижение врачей · CRM‑маркетинг · аналитика</p>
           <p>© {new Date().getFullYear()} K‑Medical</p>
         </div>
       </div>
     </footer>
   );
 }
-

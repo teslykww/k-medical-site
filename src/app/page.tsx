@@ -1,177 +1,162 @@
 import type { Metadata } from "next";
 import { ArticleCard } from "@/components/ArticleCard";
 import { ButtonLink } from "@/components/ButtonLink";
+import { Cases } from "@/components/Cases";
+import { ChannelTypewriter } from "@/components/ChannelTypewriter";
 import { CTASection } from "@/components/CTASection";
-import { EvidenceCards, MeasurementDepth } from "@/components/Evidence";
-import { GrowthEngines } from "@/components/GrowthEngines";
-import { HeroRouteVisual, PatientJourney } from "@/components/PatientJourney";
-import { SectionHeading } from "@/components/SectionHeading";
+import { FAQ } from "@/components/FAQ";
+import { HeroExperience } from "@/components/HeroExperience";
+import { JsonLd } from "@/components/JsonLd";
+import { MarketingStoryStack } from "@/components/MarketingStoryStack";
+import { Pricing } from "@/components/Pricing";
+import { ReportPreview } from "@/components/ReportPreview";
 import { Team } from "@/components/Team";
+import { Reveal } from "@/components/motion/Reveal";
 import { articles } from "@/content/articles";
+import { baseUrl, clinicFaq, clinicPlans, siteName } from "@/content/site";
 import styles from "./pages.module.css";
 
 export const metadata: Metadata = {
-  title: "Маркетинг частной клиники от спроса до оплаты",
+  title: "Медицинский маркетинг для частных клиник",
   description:
-    "Помогаем клинике выбрать направления, привлекать пациентов и видеть путь от обращения до записи, визита, оплаты и повтора.",
+    "K‑Medical помогает частным клиникам получать больше платящих пациентов: реклама, поиск, сайт, репутация, продвижение врачей, база и аналитика.",
   alternates: { canonical: "/" },
 };
 
-export default function Home() {
+const focusArticles = [
+  "svyazat-reklamu-i-oplaty",
+  "gde-klinika-teryaet-pacienta",
+  "vozvrat-pacientov-iz-bazy",
+].map((slug) => articles.find((article) => article.slug === slug)).filter(Boolean);
+
+export default function HomePage() {
   return (
     <main id="main-content">
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <div className={styles.heroCopy}>
-            <h1>Маркетинг частной клиники — от спроса до пациента и оплаты</h1>
+      <section className={styles.heroV2}>
+        <div className={`container ${styles.heroV2Grid}`}>
+          <div className={styles.heroV2Copy}>
+            <p className={styles.eyebrow}>Медицинский маркетинг для частных клиник</p>
+            <h1>Приводим платящих пациентов, а не просто заявки</h1>
             <p>
-              Помогаем выбрать направления, которые действительно имеет смысл масштабировать, привлекать пациентов, усиливать доверие к клинике и врачам и видеть, что происходит дальше заявки: запись, визит, оплата и повтор.
+              Выстраиваем системный маркетинг клиники: привлекаем новых пациентов из рекламы, поиска и медицинских площадок, усиливаем доверие к врачам и возвращаем пациентов из вашей базы.
+            </p>
+            <p>
+              Вы видите, какие каналы дают обращения и записи, куда уходит рекламный бюджет и что стоит усиливать дальше.
             </p>
             <div className={styles.heroActions}>
-              <ButtonLink href="/diagnostic#form" eventLabel="hero-home">
-                Разобрать текущую систему привлечения пациентов
-              </ButtonLink>
-              <ButtonLink href="#approach" variant="secondary" eventLabel="hero-approach">
-                Посмотреть, как мы работаем
-              </ButtonLink>
+              <ButtonLink href="/diagnostic#form">Обсудить продвижение клиники</ButtonLink>
+              <ButtonLink href="#services" variant="secondary">Посмотреть, что берём на себя</ButtonLink>
             </div>
-            <p className={`${styles.heroNote} ${styles.heroSegments}`}>
-              <span>Клиники</span><span>Стоматологии</span><span>Сильные врачи</span><span>Маркетинг + аналитика + автоматизация</span>
-            </p>
           </div>
-          <div className={styles.heroVisual}><HeroRouteVisual /></div>
+          <HeroExperience />
         </div>
-      </section>
-
-      <section className="section">
-        <div className={`container ${styles.problemLayout}`}>
-          <div className={styles.problemStatement}>
-            <h2>Лиды сами по себе не лечат экономику клиники</h2>
-            <p>
-              Наша задача — найти главное ограничение в этой цепочке и работать сначала с ним, а не «подключать всё подряд».
-            </p>
-          </div>
-          <div className={styles.problemExamples}>
-            <article><strong>Реклама</strong><p>Можно снизить стоимость заявки — и не получить больше денег.</p></article>
-            <article><strong>Обработка</strong><p>Можно привести больше звонков — и потерять их у администратора.</p></article>
-            <article><strong>Мощность</strong><p>Можно рекламировать направление, у которого нет свободных окон.</p></article>
-            <article><strong>Доверие</strong><p>Можно сделать красивый сайт врача — но пациент всё равно увидит противоречивые отзывы и уйдёт сравнивать дальше.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-surface" id="approach">
-        <div className="container">
-          <SectionHeading
-            title="Весь путь пациента, а не только заявка"
-            description="Спрос → сайт / карточка → обращение → администратор → запись → доходимость → визит → оплата → повтор"
-          />
-          <div className={styles.journeyPanel}>
-            <p>
-              Мы смотрим на весь путь пациента. Каждая точка маршрута может стать ограничением, поэтому сначала определяем главное из них, а не подключаем инструменты без приоритета.
-            </p>
-            <PatientJourney />
-          </div>
-          <div className={styles.analyticsStrip}>
-            <h3>Сквозной слой — конверсия и аналитика</h3>
-            <p>
-              Коллтрекинг, CRM/МИС, источники, записи, визиты и оплаты. Настолько глубоко, насколько позволяют данные клиники. Если сквозной атрибуции нет, мы не делаем вид, что она есть. Сначала строим измеримый контур.
-            </p>
-          </div>
-        </div>
+        <div className={`container ${styles.channelLine}`}><ChannelTypewriter /></div>
       </section>
 
       <section className="section">
         <div className="container">
-          <SectionHeading title="Три двигателя роста K‑Medical" />
-          <GrowthEngines />
+          <Reveal className={styles.sectionLead}>
+            <h2>Вам нужны не лиды. Вам нужны пациенты, которые записываются, приходят и платят</h2>
+            <p>Можно получить красивый отчёт с низкой ценой заявки — и не почувствовать этого в клинике.</p>
+            <p>Поэтому мы смотрим, откуда приходят обращения, сколько людей записываются, какие услуги и врачи получают больше спроса и какие каналы действительно стоит масштабировать.</p>
+          </Reveal>
+          <div className={styles.outcomeGrid}>
+            <Reveal delay={0.04}><article><span>01</span><h3>Больше новых пациентов</h3><p>Привлекаем спрос через Яндекс, поиск, карты, медицинские сервисы и другие каналы, которые подходят вашей клинике.</p></article></Reveal>
+            <Reveal delay={0.10}><article><span>02</span><h3>Больше записей из уже полученных обращений</h3><p>Настраиваем учёт звонков и заявок, чтобы входящие не терялись, а команда видела, с кем уже связались и кому нужно ответить или перезвонить.</p></article></Reveal>
+            <Reveal delay={0.16}><article><span>03</span><h3>Больше повторных обращений</h3><p>Работаем с пациентской базой: повторные визиты, незавершённые планы лечения, напоминания, реактивация и персональные сценарии коммуникации.</p></article></Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className={`section ${styles.storySection}`}>
+        <div className="container">
+          <Reveal className={styles.sectionLead}>
+            <h2>Три части маркетинга, которые должны работать вместе</h2>
+            <p>Новый пациент редко приходит из одной рекламной кнопки. Сначала он вас находит, потом сравнивает, читает отзывы, смотрит врача и только после этого решает записаться. А после первого визита отношения с ним не должны заканчиваться.</p>
+          </Reveal>
+          <MarketingStoryStack />
         </div>
       </section>
 
       <section className="section section-surface">
-        <div className="container"><MeasurementDepth /></div>
+        <div className="container">
+          <Reveal className={styles.reportIntro}>
+            <div>
+              <h2>Вы понимаете, за что платите и откуда приходят пациенты</h2>
+              <p>Собственнику не нужен ещё один кабинет с графиками. Нужен понятный ответ: откуда пришли пациенты, сколько стоило привлечение и что делать с бюджетом дальше.</p>
+            </div>
+            <ul>
+              <li>источники обращений</li><li>звонки и формы</li><li>запись на приём</li><li>рекламные расходы</li><li>отчётность по основным каналам</li><li>связка с CRM / МИС</li>
+            </ul>
+          </Reveal>
+          <ReportPreview />
+          <p className={styles.bigStatement}>Вы в любой момент понимаете, что сейчас работает, что мы тестируем и куда идут деньги.</p>
+        </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="services">
         <div className="container">
-          <SectionHeading title="С чего начинаем" />
-          <div className={styles.processGrid}>
-            <article><span>01</span><h3>Диагностика</h3><p>Экономика направлений, спрос, загрузка врачей, сайт, реклама, отзывы, обработка обращений, CRM/МИС и база пациентов.</p></article>
-            <article><span>02</span><h3>Приоритет</h3><p>Выбираем 1–3 направления, а не пытаемся одновременно «продвигать всю клинику».</p></article>
-            <article><span>03</span><h3>90-дневный цикл</h3><p>Подготавливаем контур, запускаем гипотезы, измеряем, усиливаем рабочее.</p></article>
-            <article><span>04</span><h3>Масштабирование</h3><p>Добавляем бюджет, направления и инструменты только после появления понятной экономики.</p></article>
+          <Reveal className={styles.sectionLead}><h2>Вы можете передать нам весь основной маркетинг клиники</h2></Reveal>
+          <div className={styles.serviceColumns}>
+            <article><h3>Привлечение</h3><p>Яндекс Директ, SEO и поисковое продвижение, Яндекс Карты / Бизнес и 2ГИС, медицинские агрегаторы, посадочные страницы, медийная и нативная реклама, блогеры, если это подходит задаче.</p></article>
+            <article><h3>Доверие</h3><p>Сайт клиники, страницы услуг, упаковка врачей, отзывы и репутация, медицинские сервисы, SMM, YouTube, видео и экспертный контент.</p></article>
+            <article><h3>База и аналитика</h3><p>CRM‑маркетинг, рассылки и напоминания, возврат пациентов, контроль обращений, коллтрекинг, CRM / МИС, дашборды и автоматизация коммуникаций.</p></article>
           </div>
+          <p className={styles.serviceNote}>Не обязательно покупать всё сразу. Состав работы зависит от задачи клиники.</p>
         </div>
       </section>
 
       <section className="section section-muted">
-        <div className={`container ${styles.fitLayout}`}>
-          <article>
-            <h3>Когда мы особенно полезны</h3>
-            <ul>
-              <li>Клиника уже тратит деньги на рекламу, но собственник не понимает, что происходит после обращения.</li>
-              <li>Нужно загрузить конкретные маржинальные направления.</li>
-              <li>Есть сильные врачи, но они почти не работают как актив маркетинга.</li>
-              <li>Маркетинг, администраторы и CRM живут отдельно друг от друга.</li>
-              <li>Есть база пациентов, но с ней системно не работают.</li>
-              <li>Планируется новый филиал или рост бюджета, и важно не масштабировать хаос.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>Когда не советуем наращивать рекламу</h3>
-            <p>
-              Если у врача нет свободных окон, клиника не знает экономику направления, обращения обрабатываются слишком медленно или невозможно понять источник пациента, сначала устраняем это. Дополнительный трафик в сломанную систему обычно просто делает потери дороже.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="section">
         <div className="container">
-          <div className={styles.metricsStatement}>
-            <h2>Управляем маркетингом по деньгам, а не по ощущениям</h2>
-            <p>
-              Обращения → квалифицированные обращения → записи → визиты → новые пациенты → оплаты → повторные оплаты. Набор метрик зависит от систем клиники. На старте фиксируем, что реально можно измерить сейчас и что нужно добавить, чтобы управлять маркетингом по деньгам, а не по ощущениям.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-surface">
-        <div className="container">
-          <SectionHeading
-            title="Не один маркетолог. Команда вокруг пути пациента"
-            description="Под задачу подключаем performance, SEO, репутацию и карты, медицинскую редактуру, дизайн и разработку, CRM/МИС-интеграции, SMM и видеопродакшн."
-          />
+          <Reveal className={styles.sectionLead}>
+            <h2>Вы не координируете пять подрядчиков. У вас одна команда по медицинскому маркетингу</h2>
+            <p>Стратегия, реклама, SEO, сайт, аналитика, репутация и контент работают по одному плану. Вам не нужно отдельно объяснять задачу директологу, разработчику, SEO‑специалисту и SMM‑команде.</p>
+          </Reveal>
           <Team />
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="cases">
         <div className="container">
-          <SectionHeading
-            title="Доказательства без приписывания чужих результатов"
-            description="Пока собственные кейсы K‑Medical не подтверждены, показываем методику и артефакты процесса. Публичные кейсы других компаний не выдаём за свои."
-          />
-          <EvidenceCards />
+          <Reveal className={styles.sectionLead}>
+            <h2>Что уже делала команда в медицинском маркетинге</h2>
+            <p>Показываем публичные референсы рынка и структуру доказательств, по которой оформляются задачи, действия, период и результат.</p>
+          </Reveal>
+          <Cases />
         </div>
       </section>
 
       <section className="section section-surface">
         <div className="container">
-          <SectionHeading title="Материалы для собственников клиник" />
-          <div className={styles.articleGrid}>
-            {articles.slice(0, 3).map((article) => <ArticleCard key={article.slug} article={article} />)}
-          </div>
+          <Reveal className={styles.sectionLead}><h2>Можно начать с одной задачи или передать нам маркетинг клиники целиком</h2></Reveal>
+          <Pricing plans={clinicPlans} />
+          <p className={styles.pricingNote}>Рекламный бюджет оплачивается отдельно. Точный состав зависит от количества филиалов, направлений, каналов и задач.</p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <Reveal className={styles.sectionLead}><h2>Пишем о том, что влияет на поток пациентов и выручку клиники</h2></Reveal>
+          <div className={styles.articleGridWide}>{focusArticles.map((article) => article ? <ArticleCard key={article.slug} article={article} /> : null)}</div>
+          <div className={styles.centerAction}><ButtonLink href="/articles" variant="secondary">Все статьи</ButtonLink></div>
+        </div>
+      </section>
+
+      <section className="section section-muted">
+        <div className="container">
+          <Reveal className={styles.sectionLead}><h2>Частые вопросы</h2></Reveal>
+          <FAQ items={clinicFaq} />
         </div>
       </section>
 
       <CTASection cta={{
-        title: "Разобрать, где сейчас теряются пациенты и что имеет смысл масштабировать первым",
-        description: "На первой встрече не будем продавать вам «всё агентство». Сначала разберём текущую ситуацию, приоритетные направления и данные, которые уже есть.",
-        label: "Записаться на диагностическую встречу",
+        title: "Посмотрим, как сейчас устроен ваш маркетинг и где можно получить больше пациентов",
+        description: "Покажите сайт и расскажите, какие направления хотите продвигать. На первой встрече разберём текущую ситуацию и скажем, какой формат работы здесь имеет смысл.",
+        label: "Обсудить продвижение",
         href: "/diagnostic#form",
       }} />
+
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Organization", name: siteName, url: baseUrl, description: metadata.description }} />
     </main>
   );
 }

@@ -21,26 +21,26 @@ const lora = Lora({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "K‑Medical: системный маркетинг для частной медицины",
+    default: "K‑Medical: платящие пациенты для частных клиник",
     template: "%s | K‑Medical",
   },
   description:
-    "Маркетинг частной клиники от спроса до записи, визита, оплаты и повторной выручки.",
+    "Привлекаем платящих пациентов для частных клиник, стоматологий и врачей: реклама, сайт, репутация, CRM‑маркетинг и аналитика.",
   applicationName: siteName,
   openGraph: {
     type: "website",
     locale: "ru_RU",
     siteName,
-    title: "K‑Medical: от спроса до пациента и оплаты",
+    title: "K‑Medical: приводим платящих пациентов, а не просто заявки",
     description:
-      "Системный маркетинг, аналитика и автоматизация для частных клиник, стоматологий и сильных врачей.",
+      "Системный медицинский маркетинг: привлечение пациентов, сайты и поиск, репутация, продвижение врачей, CRM‑маркетинг и аналитика.",
   },
   twitter: {
     card: "summary_large_image",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
+    follow: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
   },
 };
 
@@ -62,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             "@type": "Organization",
             name: siteName,
             url: baseUrl,
-            description: "Системный маркетинг для частной медицины.",
+            description: "Системный маркетинг для частных клиник и врачей.",
           }}
         />
       </body>

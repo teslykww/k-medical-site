@@ -1,17 +1,18 @@
 import { Check } from "@phosphor-icons/react/dist/ssr";
 import { doctorPlans } from "@/content/site";
+import type { PricingPlan } from "@/content/types";
 import { ButtonLink } from "./ButtonLink";
 import styles from "./site.module.css";
 
-export function Pricing() {
+export function Pricing({ plans = doctorPlans }: { plans?: PricingPlan[] }) {
   return (
     <div className={styles.pricingGrid}>
-      {doctorPlans.map((plan) => (
+      {plans.map((plan) => (
         <article
           key={plan.name}
           className={`${styles.pricingCard} ${plan.highlighted ? styles.pricingHighlighted : ""}`}
         >
-          {plan.highlighted ? <span className={styles.pricingMarker}>Основной продукт</span> : null}
+          {plan.highlighted ? <span className={styles.pricingMarker}>Основной формат</span> : null}
           <h3>{plan.name}</h3>
           <p className={styles.price}>{plan.price}</p>
           <p>{plan.description}</p>
@@ -40,4 +41,3 @@ export function Pricing() {
     </div>
   );
 }
-

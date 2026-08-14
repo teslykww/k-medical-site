@@ -27,6 +27,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ArticlePage({ params }: Props) {
   const article = getArticle((await params).slug);
   if (!article) notFound();
+  const coverByCategory = {
+    Клиники: "/images/analytics-report-v2.webp",
+    Стоматология: "/images/hero-system-v2.webp",
+    Врачи: "/images/editorial-route-texture.png",
+    Реклама: "/images/analytics-report-v2.webp",
+    Репутация: "/images/hero-system-v2.webp",
+    Аналитика: "/images/analytics-report-v2.webp",
+    "База пациентов": "/images/diagnostic-report-v2.webp",
+  } as const;
 
   return (
     <main id="main-content" className={styles.articlePage}>
@@ -37,7 +46,7 @@ export default async function ArticlePage({ params }: Props) {
           <p>{article.description}</p>
         </header>
         <div className={styles.articleCover}>
-          <Image src="/images/editorial-route-texture.png" alt="Абстрактная карта маршрута пациента" width={1400} height={1000} priority />
+          <Image src={coverByCategory[article.category]} alt="Редакционная иллюстрация к статье" width={1400} height={1000} priority />
         </div>
         <div className={styles.articleBody}>
           {article.sections.map((section, index) => (
@@ -47,9 +56,9 @@ export default async function ArticlePage({ params }: Props) {
             </section>
           ))}
           <aside className={styles.articleCta}>
-            <h2>Применить это к вашей клинике</h2>
-            <p>Разберём, где находится главное ограничение и какой следующий шаг можно проверить данными.</p>
-            <ButtonLink href="/diagnostic#form" event="article_cta_click" eventLabel={article.slug}>Обсудить диагностику</ButtonLink>
+            <h2>{article.cta.title}</h2>
+            <p>{article.cta.description}</p>
+            <ButtonLink href={article.cta.href} event="article_cta_click" eventLabel={article.slug}>{article.cta.label}</ButtonLink>
           </aside>
         </div>
       </article>

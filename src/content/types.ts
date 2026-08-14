@@ -26,7 +26,21 @@ export type TeamMember = {
   role: string;
   description: string;
   initials: string;
-  status: "confirmed" | "requires-confirmation";
+  status: "confirmed" | "demonstration";
+};
+
+export type CaseStudy = {
+  id: string;
+  label: string;
+  segment: string;
+  title: string;
+  result: string;
+  situation: string;
+  actions: string[];
+  outcome: string;
+  period: string;
+  source: string;
+  image: string;
 };
 
 export type PricingPlan = {
@@ -60,9 +74,16 @@ export type Article = {
   slug: string;
   title: string;
   description: string;
-  category: "Клиника" | "Стоматология" | "Врач" | "Аналитика" | "База пациентов";
+  category:
+    | "Клиники"
+    | "Стоматология"
+    | "Врачи"
+    | "Реклама"
+    | "Репутация"
+    | "Аналитика"
+    | "База пациентов";
   readingTime: string;
   publishedAt: string;
   sections: ArticleSection[];
+  cta: CTA;
 };
-

@@ -2,147 +2,73 @@ import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
-import { SectionHeading } from "@/components/SectionHeading";
+import { ReportPreview } from "@/components/ReportPreview";
+import { Reveal } from "@/components/motion/Reveal";
 import { baseUrl } from "@/content/site";
 import styles from "../pages.module.css";
 
 export const metadata: Metadata = {
-  title: "Диагностика маркетинга частной клиники",
+  title: "Диагностика маркетинга клиники за 10 рабочих дней",
   description:
-    "Находим главное ограничение в экономике, спросе, загрузке, обработке обращений и данных клиники и собираем план на 90 дней.",
+    "Проверим рекламу, сайт, врачей, карты, отзывы, обращения, аналитику и базу пациентов. На выходе — приоритеты и конкретный план действий.",
   alternates: { canonical: "/diagnostic" },
 };
 
 const reasons = [
-  "Реклама идёт, но непонятно, почему выручка не растёт.",
-  "Подрядчик говорит про лиды, а клиника — про пустые записи.",
-  "Хотите увеличить бюджет, но боитесь масштабировать неэффективность.",
-  "Открываете новый филиал или направление.",
-  "Есть спор: проблема в маркетинге, администраторах или врачах.",
-  "Данные есть в нескольких системах, но единой картины нет.",
+  ["Реклама работает нестабильно", "Каждый месяц результат меняется, а понятной причины нет."],
+  ["Заявки есть, а записей хочется больше", "Нужно понять, где теряется часть входящих и что можно улучшить."],
+  ["Несколько подрядчиков работают отдельно", "Реклама, сайт, SEO и CRM существуют сами по себе, а единой картины нет."],
+  ["Запускаете новое направление или филиал", "Нужно понять спрос, конкурентов, упаковку и набор каналов до большого рекламного запуска."],
+  ["Хотите поменять подрядчика", "Нужна независимая картина того, что уже работает и что не стоит ломать."],
 ];
 
-const analysisAreas = [
-  ["Экономика", "Выручку и экономику приоритетных медицинских продуктов."],
-  ["Спрос", "Спрос и конкурентное поле."],
-  ["Мощность", "Свободную мощность врачей, кабинетов и оборудования."],
-  ["Привлечение", "Текущие каналы привлечения и рекламные бюджеты."],
-  ["Доверие", "Сайт, страницы услуг и врачей, карты, отзывы и медицинские площадки."],
-  ["Обработка", "Звонки, формы, скорость ответа, запись и доходимость."],
-  ["Данные", "CRM/МИС, коллтрекинг и качество источников."],
-  ["База", "Повторную выручку и возможности существующей базы."],
+const analysisGroups = [
+  ["Привлечение", "рекламные кампании", "поисковый спрос", "SEO", "карты и медицинские площадки", "рекламные бюджеты"],
+  ["Сайт и доверие", "первый экран", "страницы услуг", "страницы врачей", "отзывы", "цены и офферы", "формы и запись"],
+  ["Входящие обращения", "звонки и заявки", "пропущенные", "скорость ответа", "повторные касания", "запись"],
+  ["Данные", "Метрика", "коллтрекинг", "CRM / МИС", "источники обращений", "текущая отчётность"],
+  ["База пациентов", "повторные визиты", "незавершённые обращения", "сценарии возврата", "коммуникации"],
+];
+
+const deliverables = [
+  ["Список изменений в порядке приоритета", "Не 70 замечаний ради объёма, а то, что действительно стоит менять первым."],
+  ["План по каналам", "Что оставить, что отключить, что протестировать и куда разумно направить следующий рекламный бюджет."],
+  ["Список правок сайта и упаковки", "Какие страницы, врачи, отзывы и офферы мешают конверсии и что конкретно нужно переделать."],
+  ["Схема учёта обращений", "Какие события и данные нужно видеть, чтобы управлять маркетингом."],
+  ["Пошаговый план запуска", "Задачи, последовательность, ответственные и ориентир по бюджету."],
 ];
 
 export default function DiagnosticPage() {
   return (
     <main id="main-content">
-      <section className={styles.heroSimple}>
-        <div className={styles.heroSimpleInner}>
-          <h1>Найдём главное ограничение маркетинга клиники и определим, что имеет смысл делать в следующие 90 дней</h1>
-          <div className={styles.heroSimpleAside}>
-            <p>
-              Не аудит рекламного кабинета. Разбираем экономику направлений, спрос, загрузку врачей, сайт и доверие, обработку обращений, CRM/МИС и существующую базу пациентов.
-            </p>
-            <div><ButtonLink href="#form" eventLabel="hero-diagnostic">Записаться на диагностическую встречу</ButtonLink></div>
-          </div>
+      <section className={`${styles.innerHeroV2} ${styles.diagnosticHeroV2}`}>
+        <div className={`container ${styles.innerHeroGrid}`}>
+          <div><p className={styles.eyebrow}>Диагностика маркетинга клиники</p><h1>За 10 рабочих дней покажем, что мешает получать больше пациентов</h1><p>Проверим рекламу, сайт, врачей, карты, отзывы, входящие обращения, аналитику и текущую базу пациентов. На выходе — конкретный список изменений, приоритеты и план действий.</p><div className={styles.heroActions}><ButtonLink href="#form">Обсудить диагностику</ButtonLink></div></div>
+          <div className={styles.diagnosticPriceCard}><span>Стоимость</span><strong>150 000 ₽</strong><p>Практический маркетинговый разбор перед запуском или масштабированием.</p></div>
         </div>
       </section>
 
       <section className="section">
-        <div className={`container ${styles.serviceColumns}`}>
-          <div className={styles.serviceIntro}>
-            <h2>Когда диагностика нужна больше, чем ещё один рекламный запуск</h2>
-          </div>
-          <div className={styles.serviceRows}>
-            {reasons.map((text, index) => (
-              <article className={styles.serviceRow} key={text}>
-                <span>0{index + 1}</span><h3>{text}</h3>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-surface">
-        <div className="container">
-          <SectionHeading title="Что анализируем" />
-          <div className={styles.serviceRows}>
-            {analysisAreas.map(([title, text], index) => (
-              <article className={styles.serviceRow} key={title}>
-                <span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <SectionHeading title="Что получите физически" />
-          <div className={styles.deliverables}>
-            <article className={styles.deliverablePrimary}>
-              <h3>Карту текущей системы привлечения и потерь</h3>
-              <p>
-                Приоритет 1–3 направлений для следующего цикла и список критических ограничений: что мешает росту сейчас.
-              </p>
-            </article>
-            <div className={styles.deliverableList}>
-              <article><h3>Модель измерения</h3><p>Что считаем сегодня и что нужно достроить.</p></article>
-              <article><h3>90-дневный план действий</h3><p>Конкретная последовательность работы после диагностики.</p></article>
-              <article><h3>Рекомендованный маршрут</h3><p>Подготовительный модуль, пилот или основной тариф.</p></article>
-            </div>
-          </div>
-        </div>
+        <div className="container"><Reveal className={styles.sectionLead}><h2>Когда стоит сначала разобраться, а уже потом увеличивать рекламный бюджет</h2></Reveal><div className={styles.reasonGrid}>{reasons.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div>
       </section>
 
       <section className="section section-muted">
-        <div className="container">
-          <div className={styles.termsBox}>
-            <h2>Как проходит</h2>
-            <div className={styles.termsGrid}>
-              <article><strong>до 10 рабочих дней</strong><p>После получения исходных данных.</p></article>
-              <article><strong>150 000 ₽</strong><p>Оплата 70% до старта, 30% после подготовки отчёта и до финальной презентации.</p></article>
-              <article><strong>100 000 ₽ в зачёт</strong><p>Если в течение 30 дней после диагностики клиника начинает основной контракт, 100 000 ₽ засчитываются в запуск или первый месяц; 50 000 ₽ остаются стоимостью диагностики.</p></article>
-            </div>
-          </div>
-        </div>
+        <div className="container"><Reveal className={styles.sectionLead}><h2>Разбираем всё, что влияет на поток пациентов</h2></Reveal><div className={styles.analysisMosaic}>{analysisGroups.map(([title, ...items]) => <article key={title}><h3>{title}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div></div>
+      </section>
+
+      <section className="section section-surface">
+        <div className="container"><Reveal className={styles.sectionLead}><h2>Что будет у вас на руках через 10 рабочих дней</h2></Reveal><div className={styles.deliverableList}>{deliverables.map(([title, text], index) => <article key={title}><span>{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div><ReportPreview src="/images/diagnostic-report-v2.webp" alt="Демонстрационный пример структуры диагностического отчёта" label="Пример структуры диагностического отчёта" /></div>
       </section>
 
       <section className="section">
-        <div className={`container ${styles.serviceColumns}`}>
-          <div className={styles.serviceIntro}><h2>Что не входит</h2></div>
-          <div className={styles.serviceRows}>
-            <article className={styles.serviceRow}>
-              <span>01</span>
-              <h3>Границы диагностики</h3>
-              <p>
-                Запуск рекламных кампаний, полноценная разработка сайта, внедрение CRM/МИС с нуля, юридическое заключение и гарантия роста выручки. Диагностика отвечает на вопрос «что делать и в каком порядке», а не маскирует внедрение под аудит.
-              </p>
-            </article>
-          </div>
-        </div>
+        <div className="container"><Reveal className={styles.sectionLead}><h2>Как проходит работа</h2></Reveal><div className={styles.processTimeline}><article><strong>Получаем доступы и исходные данные</strong></article><article><strong>Разбираем рекламу, сайт, спрос, репутацию, обращения и аналитику</strong></article><article><strong>Собираем выводы и конкретный план</strong></article><article><strong>Проводим встречу и защищаем рекомендации перед собственником / командой</strong></article></div><div className={styles.commercialTerms}><span><b>Срок</b>до 10 рабочих дней после получения материалов</span><span><b>Стоимость</b>150 000 ₽</span><span><b>Оплата</b>70% до старта, 30% перед финальной презентацией</span></div><p className={styles.bonusNote}>Если после диагностики вы начинаете основное сопровождение K‑Medical в течение 30 дней, 100 000 ₽ засчитываются в запуск или первый месяц.</p></div>
       </section>
 
-      <section className="section section-surface" id="form">
-        <div className={`container ${styles.formLayout}`}>
-          <div className={styles.formIntro}>
-            <h2>Понять, что ограничивает рост прямо сейчас</h2>
-            <p>
-              На короткой квалификационной встрече посмотрим, подходит ли вам полная диагностика или задача решается проще.
-            </p>
-          </div>
-          <LeadForm />
-        </div>
-      </section>
+      <section className="section section-muted"><div className={`container ${styles.twoColumnStatement}`}><h2>Диагностика должна окупиться правильным решением, а не красивым PDF</h2><div><p>Её задача — не продать вам как можно больше маркетинговых услуг. Задача — понять, что действительно стоит запускать сейчас, а что можно отложить.</p><p className={styles.bigStatement}>После диагностики у вас есть понятный список действий и бюджетов — независимо от того, продолжим мы работать вместе или нет.</p></div></div></section>
 
-      <JsonLd data={{
-        "@context": "https://schema.org",
-        "@type": "Service",
-        name: "Диагностика маркетинга клиники",
-        provider: { "@type": "Organization", name: "K‑Medical", url: baseUrl },
-        offers: { "@type": "Offer", price: "150000", priceCurrency: "RUB" },
-        url: `${baseUrl}/diagnostic`,
-      }} />
+      <section className="section" id="form"><div className={`container ${styles.formSection}`}><div><p className={styles.eyebrow}>Первый шаг</p><h2>Покажите текущий маркетинг — скажем, есть ли смысл начинать с диагностики</h2><p>Пришлите сайт клиники и коротко опишите задачу. На первой встрече поймём, нужен ли полный разбор или вопрос можно решить проще.</p></div><div><h3>Расскажите, что хотите изменить в маркетинге</h3><LeadForm /></div></div></section>
+
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: "Диагностика маркетинга клиники", provider: { "@type": "Organization", name: "K‑Medical", url: baseUrl }, offers: { "@type": "Offer", priceCurrency: "RUB", price: "150000" }, description: metadata.description }} />
     </main>
   );
 }

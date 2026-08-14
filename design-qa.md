@@ -67,3 +67,15 @@ Post-fix desktop and mobile captures show the corrected hierarchy. The route ima
 
 - Real team photography can replace initials after confirmed assets are supplied.
 - Production contacts, privacy documents, final domain and analytics can be styled into the established system when supplied.
+
+### Pass 4 — COPY v2 and kinetic design upgrade
+
+- `docs/05-website-copy.md` is now the in-repo COPY v2 source of truth used for all five index pages and all eight articles.
+- Desktop and mobile were rechecked at 1440 × 1000 and 390 × 844 after the hero, story-stack, case, report and button-motion upgrade.
+- Main navigation now exposes `Клиникам`, `Стоматологиям`, `Врачам`, `Кейсы`, `Статьи`; mobile menu opens, closes with Escape and keeps 44+ px targets.
+- All core H1/H2 strings were automatically checked against COPY v2; all matched the source. All eight article routes preserve their slugs and render the complete new article copy with individual CTA blocks.
+- Reference cases are visibly marked `Референс рынка / пример структуры`; generated visuals are additionally marked as demonstration/report examples and are not presented as K‑Medical evidence.
+- Temporary phone, WhatsApp and Telegram values are non-interactive placeholders. The lead form has four requested business fields and shows a truthful preview-state message when no endpoint is configured.
+- No horizontal overflow was found on the tested routes. Browser console warnings/errors: none.
+- HTTP 200 verified for all five index routes, all eight article routes, `/robots.txt` and `/sitemap.xml`.
+- Preview indexing remains blocked both in metadata and `robots.txt` until `NEXT_PUBLIC_ALLOW_INDEXING=true` is explicitly configured.
