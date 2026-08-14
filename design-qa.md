@@ -120,3 +120,10 @@ Post-fix desktop and mobile captures show the corrected hierarchy. The route ima
 - Escape closes the drawer and returns focus to the initiating service row. Close button works on mobile. Browser console warnings/errors: none.
 - Hero channel typewriter now includes targeted advertising, SMM and YouTube/video while preserving one non-repeating motion surface.
 - Lint, typecheck and production build pass; all 19 static pages remain generated.
+
+### Pass 9 — result-first delegation copy
+
+- Preserved the approved asymmetric three-card composition and replaced internal capability labels with the client journey: attract new patients, help them choose, return patients and show what works.
+- Removed media, native advertising and bloggers from the first high-level card while leaving them available where a specific task requires them.
+- Added a restrained bold lead inside each card so the channel set is scannable without turning the block into a menu of tools.
+- Strengthened the closing note around starting with the directions and tasks that can create the greatest current effect for the clinic.

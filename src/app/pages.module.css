@@ -1303,11 +1303,36 @@
   margin-top: 26px;
 }
 
+.serviceCardCopy {
+  display: grid;
+  gap: 16px;
+}
+
+.serviceCardCopy strong {
+  color: var(--foreground);
+  font-size: 0.94rem;
+  font-weight: 720;
+  line-height: 1.58;
+}
+
+.serviceColumns article:nth-child(2) .serviceCardCopy strong {
+  color: var(--surface);
+}
+
+.serviceCardCopy span {
+  display: block;
+}
+
 .serviceNote,
 .pricingNote {
   max-width: 72ch;
   margin: 32px auto 0;
   text-align: center;
+}
+
+.serviceNote strong {
+  color: var(--foreground);
+  font-weight: 720;
 }
 
 .channelServicesCatalog {
