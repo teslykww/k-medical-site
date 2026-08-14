@@ -90,3 +90,12 @@ Post-fix desktop and mobile captures show the corrected hierarchy. The route ima
 - Updated the Open Graph message to the current patient-first positioning. Preview indexing remains env-gated.
 - Production build, lint and type checks pass for all 19 generated pages. Desktop browser QA confirmed the audience split, card offset, anchor destination, CTA contrast, footer cleanup and three retained cases; no browser warnings or errors were found.
 - Mobile fallbacks are explicit at the established `860px` and `767px` breakpoints: both new grids collapse to one column, the offset is removed, card heights become automatic and the long clinic CTA receives a full-width compact treatment.
+
+### Pass 6 — product-pass integration
+
+- Accepted the 14.08.2026 product pass as a narrow override for product names, prices, launch conditions and lead routes; the full COPY v2, approved visual target and retained reference cases remain unchanged.
+- Kept Diagnosis outside the recurring pricing row, preserved the three clinic/Dental/Doctor levels and kept Enterprise plus the `Готовность к росту` bundle as supporting lines rather than extra tariff cards.
+- Replaced the accidental three-item use of the four-item outcome grid with a dedicated asymmetric product composition: one anchor product and two supporting products, with explicit tablet, mobile, coarse-pointer and reduced-motion fallbacks.
+- Integrated the Doctor form into the existing dark final conversion surface instead of adding a detached white ending after it.
+- Fixed all Doctor pricing CTAs to target `#doctor-form`; clinic and Dental pricing retain the clinical diagnostic route.
+- Replaced internal Doctor tier names in public audit copy with the public Russian product names and clarified the Doctor form label and example.

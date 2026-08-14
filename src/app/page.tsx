@@ -31,19 +31,16 @@ const focusArticles = [
 
 const focusedProducts = [
   {
-    number: "01",
     title: "Какие услуги стоит развивать",
     price: "150 000 ₽",
     text: "Выбираем 1–3 приоритетных направления и считаем разумные ориентиры по спросу, загрузке и маркетинговому бюджету.",
   },
   {
-    number: "02",
     title: "Аналитика и атрибуция",
     price: "180 000 ₽",
     text: "Приводим в порядок источники, UTM, звонки, формы, основные стадии обращения и отчётность — чтобы было понятно, какие каналы приводят записи.",
   },
   {
-    number: "03",
     title: "Входящие обращения и конверсия",
     price: "120 000 ₽",
     text: "Помогаем получать больше записей из уже оплаченных звонков и заявок: пропущенные, скорость ответа, повторные касания и контроль обработки.",
@@ -177,14 +174,14 @@ export default function HomePage() {
             <h2>Если полный маркетинг пока не нужен, можно решить одну конкретную задачу</h2>
             <p>Эти продукты нужны, когда проблема уже понятна и нет смысла покупать большое сопровождение ради одной точки.</p>
           </Reveal>
-          <div className={styles.outcomeGrid}>
+          <div className={styles.focusedProductsGrid}>
             {focusedProducts.map((product, index) => (
-              <Reveal key={product.title} delay={index * 0.06}>
-                <article>
-                  <span>{product.number}</span>
+              <Reveal key={product.title} className={styles.focusedProductReveal} delay={index * 0.06}>
+                <article className={styles.focusedProductCard}>
+                  <span>Точечный продукт</span>
                   <h3>{product.title}</h3>
                   <p>{product.text}</p>
-                  <p><strong>{product.price}</strong></p>
+                  <strong className={styles.focusedProductPrice}>{product.price}</strong>
                 </article>
               </Reveal>
             ))}

@@ -4,7 +4,12 @@ import type { PricingPlan } from "@/content/types";
 import { ButtonLink } from "./ButtonLink";
 import styles from "./site.module.css";
 
-export function Pricing({ plans = doctorPlans }: { plans?: PricingPlan[] }) {
+type PricingProps = {
+  plans?: PricingPlan[];
+  ctaHref?: string;
+};
+
+export function Pricing({ plans = doctorPlans, ctaHref = "/diagnostic#form" }: PricingProps) {
   return (
     <div className={styles.pricingGrid}>
       {plans.map((plan) => (
@@ -29,7 +34,7 @@ export function Pricing({ plans = doctorPlans }: { plans?: PricingPlan[] }) {
             ))}
           </ul>
           <ButtonLink
-            href="/diagnostic#form"
+            href={ctaHref}
             variant={plan.highlighted ? "primary" : "secondary"}
             event="pricing_cta_click"
             eventLabel={plan.name}

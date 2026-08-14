@@ -72,8 +72,14 @@ export function LeadForm({ context = "diagnostic" }: { context?: LeadFormContext
         </label>
       </div>
       <label>
-        <span>{isDoctor ? "Врач / клиника / город" : "Клиника или город"}</span>
-        <input name="clinic" autoComplete="organization" required minLength={2} />
+        <span>{isDoctor ? "Врач, клиника или город" : "Клиника или город"}</span>
+        <input
+          name="clinic"
+          autoComplete="organization"
+          required
+          minLength={2}
+          placeholder={isDoctor ? "Например: ортодонт, Москва или название клиники" : undefined}
+        />
       </label>
       <label>
         <span>{isDoctor ? "Что хотите получить от продвижения?" : "Что хотите улучшить?"}</span>
