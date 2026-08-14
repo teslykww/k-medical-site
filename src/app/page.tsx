@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArticleCard } from "@/components/ArticleCard";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CTASection } from "@/components/CTASection";
+import { HeroRouteVisual } from "@/components/PatientJourney";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Team } from "@/components/Team";
 import { articles } from "@/content/articles";
@@ -40,12 +41,7 @@ export default function Home() {
               <span>Яндекс Директ</span><span>SEO</span><span>Карты</span><span>Медицинские площадки</span><span>Сайт</span><span>Репутация</span><span>Врачи</span><span>CRM‑маркетинг</span><span>Аналитика</span>
             </p>
           </div>
-          <div className={styles.heroVisual} aria-hidden>
-            <div className={styles.metricsStatement}>
-              <h2>Новые пациенты + доверие + база + аналитика</h2>
-              <p>Одна команда связывает основные задачи маркетинга клиники в понятную систему.</p>
-            </div>
-          </div>
+          <div className={styles.heroVisual}><HeroRouteVisual /></div>
         </div>
       </section>
 
@@ -71,19 +67,16 @@ export default function Home() {
             title="Три части маркетинга, которые должны работать вместе"
             description="Пациент сначала находит клинику, затем сравнивает, смотрит врача и отзывы, принимает решение о записи — а после первого визита отношения с ним не должны заканчиваться."
           />
-          <div className={styles.processGrid}>
+          <div className={styles.termsGrid}>
             <article>
-              <span>01</span>
               <h3>Привлекаем новых пациентов</h3>
               <p>Яндекс Директ, SEO, карты, геосервисы, медицинские площадки, контент, нативные размещения и другие источники спроса.</p>
             </article>
             <article>
-              <span>02</span>
               <h3>Помогаем выбрать вашу клинику и врача</h3>
               <p>Сайт, страницы услуг, карточки врачей, отзывы, фотографии, видео, контент и репутация отвечают пациенту на вопрос: «Почему мне идти именно сюда?»</p>
             </article>
             <article>
-              <span>03</span>
               <h3>Возвращаем пациентов, которые уже вас знают</h3>
               <p>Повторные визиты, незавершённые планы лечения, пациенты, которые не дошли или давно не были в клинике, — отдельный источник записей.</p>
             </article>
@@ -109,19 +102,16 @@ export default function Home() {
       <section className="section section-surface" id="what-we-do">
         <div className="container">
           <SectionHeading title="Вы можете передать нам весь основной маркетинг клиники" />
-          <div className={styles.processGrid}>
+          <div className={styles.termsGrid}>
             <article>
-              <span>01</span>
               <h3>Привлечение</h3>
               <p>Яндекс Директ, SEO, Яндекс Карты / Бизнес и 2ГИС, медицинские агрегаторы, посадочные страницы, медийная и нативная реклама.</p>
             </article>
             <article>
-              <span>02</span>
               <h3>Доверие</h3>
               <p>Сайт клиники, страницы услуг и врачей, отзывы и репутация, медицинские площадки, SMM, YouTube, видео и экспертный контент.</p>
             </article>
             <article>
-              <span>03</span>
               <h3>База и аналитика</h3>
               <p>CRM‑маркетинг, рассылки и напоминания, возврат пациентов, контроль обращений, коллтрекинг, CRM / МИС, дашборды и автоматизация коммуникаций.</p>
             </article>
