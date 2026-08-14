@@ -25,11 +25,7 @@ export function Team() {
             <span key={role}>{role}</span>
           ))}
         </div>
-        <p className={styles.dataNotice}>
-          Фото и биографические данные появятся после подтверждения команды. Фейковые портреты не используются.
-        </p>
       </div>
     </div>
   );
 }
-

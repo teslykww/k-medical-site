@@ -11,7 +11,7 @@ export function Footer() {
             {siteName}
           </Link>
           <p className={styles.footerDescription}>
-            Системный маркетинг для частной медицины: от спроса до пациента и оплаты.
+            Системный маркетинг для частных клиник и врачей.
           </p>
         </div>
 
@@ -24,11 +24,10 @@ export function Footer() {
         </nav>
 
         <div className={styles.footerMeta}>
-          <p>Контакты и реквизиты будут добавлены после подтверждения команды.</p>
+          <p>Привлечение пациентов · сайты и поиск · репутация · продвижение врачей · CRM‑маркетинг · аналитика</p>
           <p>© {new Date().getFullYear()} K‑Medical</p>
         </div>
       </div>
     </footer>
   );
 }
-

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ArticleCard } from "@/components/ArticleCard";
 import { ButtonLink } from "@/components/ButtonLink";
-import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
 import { Pricing } from "@/components/Pricing";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -10,9 +9,9 @@ import { baseUrl } from "@/content/site";
 import styles from "../pages.module.css";
 
 export const metadata: Metadata = {
-  title: "Продвижение и цифровое присутствие врача",
+  title: "Продвижение врача — записи, репутация и цифровое присутствие",
   description:
-    "Позиционирование, профили, репутация, экспертный контент, трафик и аналитика записи без обязанности врачу становиться блогером.",
+    "Превращаем экспертизу врача в поток записей: сайт, медицинские площадки, отзывы, поиск, контент, видео и реклама без обязанности жить в соцсетях.",
   alternates: { canonical: "/doctor" },
 };
 
@@ -21,12 +20,38 @@ export default function DoctorPage() {
     <main id="main-content">
       <section className={styles.heroSimple}>
         <div className={styles.heroSimpleInner}>
-          <h1>Сделаем экспертизу врача видимой там, где пациент ищет, сравнивает и выбирает специалиста</h1>
+          <div>
+            <p className={styles.heroNote}>Продвижение врачей</p>
+            <h1>Превращаем экспертизу врача в поток записей — без обязанности жить в соцсетях</h1>
+          </div>
           <div className={styles.heroSimpleAside}>
             <p>
-              Позиционирование, страницы врача, поиск и медицинские сервисы, отзывы, экспертный контент, видео, трафик, маршрут записи и аналитика — без обязанности врачу самому превращаться в блогера.
+              Сайт, медицинские площадки, отзывы, поиск, контент, видео и реклама работают вокруг одного специалиста — так, чтобы пациент понял, почему записаться именно к нему.
             </p>
-            <div><ButtonLink href="#audit" eventLabel="hero-doctor">Разобрать цифровое присутствие врача</ButtonLink></div>
+            <div className={styles.heroActions}>
+              <ButtonLink href="#audit" eventLabel="hero-doctor">Получить план продвижения врача</ButtonLink>
+              <ButtonLink href="#formats" variant="secondary" eventLabel="doctor-formats">Посмотреть форматы</ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-surface">
+        <div className="container">
+          <SectionHeading title="Если вы врач — строим поток записей вокруг вашего имени. Если вы клиника — усиливаем врача как точку привлечения пациентов" />
+          <div className={styles.fitLayout}>
+            <article id="for-doctor">
+              <h3>Я врач</h3>
+              <p>Хочу больше записей и сильное профессиональное имя, но не хочу превращать продвижение во вторую работу.</p>
+              <p><strong>Превращаем вашу экспертизу в поток записей — без обязанности жить в соцсетях.</strong></p>
+              <ButtonLink href="#formats" variant="secondary" eventLabel="doctor-self">Посмотреть продвижение для врача</ButtonLink>
+            </article>
+            <article id="for-clinic">
+              <h3>Я представляю клинику</h3>
+              <p>Хочу загрузить сильного специалиста и развивать направление через его имя, экспертизу и репутацию.</p>
+              <p><strong>Помогаем превратить сильного врача в отдельную точку привлечения пациентов и роста направления.</strong></p>
+              <ButtonLink href="#clinic" variant="secondary" eventLabel="doctor-clinic">Посмотреть продвижение врача для клиники</ButtonLink>
+            </article>
           </div>
         </div>
       </section>
@@ -34,22 +59,26 @@ export default function DoctorPage() {
       <section className="section">
         <div className={`container ${styles.serviceColumns}`}>
           <div className={styles.serviceIntro}>
-            <h2>Сильный врач может проигрывать просто потому, что его сложнее выбрать</h2>
+            <h2>До записи пациент видит не вашу практику. Он видит то, что нашёл в интернете</h2>
             <p>
-              До записи пациент обычно видит не вашу реальную практику, а цифровой след: выдачу по имени, карточку на сайте клиники, отзывы, профиль на медицинских площадках, информацию в Яндексе, видео, статьи, цены и то, насколько понятно объяснён подход.
+              Даже сильный врач может выглядеть слабее конкурента, если на сайте три строки биографии, в одном сервисе старое фото, в другом неверный стаж, отзывам никто не отвечает, а по имени врача почти ничего не находится.
             </p>
-            <p>
-              Если в одном месте стаж 12 лет, в другом 15, фотографии разные, специализация описана общими словами, отзывам никто не отвечает, а на странице врача три абзаца биографии — сильная экспертиза просто не успевает стать очевидной.
-            </p>
+            <p>Мы приводим эту картину в порядок и собираем вокруг врача понятный цифровой образ.</p>
           </div>
-          <div className={styles.metricsStatement}>
-            <h2>Собираем единую систему присутствия</h2>
-            <p>
-              Сайт клиники / персональный сайт → Яндекс → ПроДокторов → НаПоправку → СберЗдоровье → отзывы → контент / видео → запись
-            </p>
-            <p>
-              На релевантных площадках факты должны совпадать: имя, специализация, стаж, услуги, место приёма, фото, подход, доказательства. Поэтому упаковка влияет не на «красоту профиля», а на реальный выбор пациента.
-            </p>
+          <div className={styles.serviceRows}>
+            {[
+              "Единое позиционирование",
+              "Сильная страница врача",
+              "Актуальные профили на медицинских площадках",
+              "Отзывы",
+              "Статьи и видео",
+              "Поиск по имени и услугам",
+              "Понятный путь к записи",
+            ].map((title, index) => (
+              <article className={styles.serviceRow} key={title}>
+                <span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -58,93 +87,87 @@ export default function DoctorPage() {
         <div className="container">
           <SectionHeading
             title="Врач не обязан становиться блогером"
-            description="Мы строим производство вокруг экспертизы врача, а не вокруг его свободного времени."
+            description="Главный источник контента — сама врачебная экспертиза. Наша задача — забрать производство на себя."
           />
           <div className={styles.processGrid}>
             {[
               ["01", "Интервью", "30–45 минут содержательной беседы с врачом."],
-              ["02", "Редактура", "Редактор вынимает фактуру и делает статьи, посты, сценарии, FAQ и материалы для страниц услуг."],
+              ["02", "Редактура", "Редактор собирает фактуру и делает сценарии, статьи, посты и материалы для страниц."],
               ["03", "Проверка", "Врач проверяет медицинскую точность и подтверждает факты."],
               ["04", "Публикация", "Команда публикует и распространяет готовые материалы."],
             ].map(([number, title, description]) => (
               <article key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>
             ))}
           </div>
-          <div className={styles.analyticsStrip}>
-            <p>
-              Одна содержательная беседа может превратиться в статью, несколько коротких видео, ответы на вопросы, блок FAQ и материалы для страницы услуги.
-            </p>
-          </div>
+          <div className={styles.analyticsStrip}><p>Одна нормальная беседа с врачом может дать контент на несколько недель.</p></div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <SectionHeading title="Что упаковываем" />
-          <div className={styles.deliverables}>
-            <article className={styles.deliverablePrimary}>
-              <h3>Экспертиза, которую пациент может увидеть и проверить</h3>
-              <p>
-                Кому и с какими задачами помогает врач; ключевые направления и процедуры; реальные отличия, которые можно доказать; опыт, обучение, публикации, методики и оборудование.
-              </p>
-            </article>
-            <div className={styles.deliverableList}>
-              {[
-                ["Доказательства", "Клинические случаи и отзывы — только с корректными согласиями."],
-                ["Человеческий образ", "Понятный образ врача без искусственной «звёздности»."],
-                ["Единые факты", "Согласованные данные на сайте, в поиске и медицинских сервисах."],
-                ["Путь к записи", "Понятный следующий шаг для пациента после знакомства с экспертизой."],
-              ].map(([title, description]) => <article key={title}><h3>{title}</h3><p>{description}</p></article>)}
-            </div>
+          <SectionHeading title="Что пациент должен понять о враче до записи" />
+          <div className={styles.processGrid}>
+            <article><span>01</span><h3>С чем этот врач действительно работает</h3><p>Не общая специальность, а конкретные проблемы, процедуры и типы пациентов.</p></article>
+            <article><span>02</span><h3>Почему ему можно доверять</h3><p>Опыт, обучение, клиническая практика, методики, оборудование, публикации, реальные случаи и отзывы.</p></article>
+            <article><span>03</span><h3>Как он работает</h3><p>Понятный подход, отношение к пациенту, этапы консультации и лечения.</p></article>
+            <article><span>04</span><h3>Как к нему попасть</h3><p>Актуальное место приёма, расписание, стоимость первого шага и простая запись.</p></article>
           </div>
         </div>
       </section>
 
       <section className="section section-surface">
         <div className="container">
+          <div className={styles.metricsStatement}>
+            <h2>Пациент встречает имя врача в разных местах — везде должно быть одинаково убедительно</h2>
+            <p>Сайт клиники / персональный сайт · Яндекс · ПроДокторов · НаПоправку · СберЗдоровье · поисковая выдача · YouTube · социальные сети · экспертные статьи · платная реклама.</p>
+            <p><strong>Пациент должен видеть одну и ту же сильную картину независимо от того, где впервые встретил имя врача.</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="formats">
+        <div className="container">
           <SectionHeading
-            title="Три формата работы"
-            description="Рекламный бюджет, сложный продакшн и платные размещения — отдельно. Детальный состав фиксируется в коммерческом предложении."
+            title="Три уровня продвижения врача"
+            description="Рекламный бюджет, студийные съёмки и платные размещения считаются отдельно."
           />
           <Pricing />
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-muted" id="clinic">
         <div className={`container ${styles.serviceColumns}`}>
           <div className={styles.serviceIntro}>
-            <h2>Врач + клиника: заранее решаем, кому что принадлежит</h2>
+            <h2>Для клиники сильный врач может стать отдельной точкой привлечения пациентов</h2>
           </div>
-          <div className={styles.serviceRows}>
-            <article className={styles.serviceRow}>
-              <span>01</span>
-              <h3>До старта</h3>
-              <p>
-                Если продвижение финансируется совместно, до старта фиксируем: кому принадлежат аккаунты, домен, исходники фото и видео, право использовать контент после ухода врача, куда приходят обращения и кому принадлежит пациентская база. Это не бюрократия, а защита обеих сторон.
-              </p>
-            </article>
+          <div className={styles.metricsStatement}>
+            <p>
+              Клиника получает больше возможностей привлекать пациентов на конкретное направление через имя и экспертизу специалиста. Врач получает сильное профессиональное присутствие, которое помогает ему быть заметнее и получать больше записей.
+            </p>
+            <p>При совместном проекте заранее фиксируем правила работы с аккаунтами, контентом и обращениями.</p>
           </div>
         </div>
       </section>
 
-      <section className="section section-muted" id="audit">
+      <section className="section" id="audit">
         <div className="container">
           <div className={styles.auditOffer}>
             <div>
-              <h2>Посмотреть, что пациент видит о враче до записи</h2>
+              <h2>Посмотрим, что пациент видит о враче прямо сейчас</h2>
               <p>
-                Поисковую видимость, профили, отзывы, переходы, обращения, записи и визиты. Оплаты и повторные обращения — если клиника может корректно передавать эти данные. Не обещаем «100 пациентов из личного бренда», если такую атрибуцию технически невозможно доказать.
+                Проверим поиск по имени, сайт, медицинские площадки, отзывы, контент и путь к записи. После аудита будет понятно, что исправить первым и какие каналы стоит подключать дальше.
               </p>
             </div>
             <div>
               <p className={styles.auditPrice}>80 000 ₽</p>
-              <ButtonLink href="/diagnostic#form" event="pricing_cta_click" eventLabel="doctor-audit">Заказать Doctor Audit</ButtonLink>
+              <p>7–10 рабочих дней</p>
+              <ButtonLink href="/diagnostic#form" event="pricing_cta_click" eventLabel="doctor-audit">Заказать аудит врача</ButtonLink>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-surface">
         <div className="container">
           <SectionHeading title="Материалы для врачей" />
           <div className={styles.articleGrid}>
@@ -153,12 +176,18 @@ export default function DoctorPage() {
         </div>
       </section>
 
-      <CTASection cta={{
-        title: "Посмотреть, что пациент видит о враче до записи",
-        description: "За 7–10 рабочих дней соберём карту цифрового присутствия, найдём разрывы и дадим 90-дневный план.",
-        label: "Заказать Doctor Audit — 80 000 ₽",
-        href: "/diagnostic#form",
-      }} />
+      <section className="section section-muted">
+        <div className="container">
+          <div className={styles.metricsStatement}>
+            <h2>Хотите, чтобы имя врача само помогало приводить пациентов?</h2>
+            <p>Пришлите ФИО врача, специализацию, город и ссылки на текущие страницы. Посмотрим цифровое присутствие и предложим формат продвижения.</p>
+            <div className={styles.heroActions}>
+              <ButtonLink href="/diagnostic#form" eventLabel="doctor-final-self">Обсудить своё продвижение</ButtonLink>
+              <ButtonLink href="/diagnostic#form" variant="secondary" eventLabel="doctor-final-clinic">Обсудить продвижение врача клиники</ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <JsonLd data={{
         "@context": "https://schema.org",
