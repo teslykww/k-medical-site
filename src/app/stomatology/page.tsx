@@ -49,7 +49,7 @@ export default function StomatologyPage() {
             </p>
           </div>
           <div className={styles.servicePath}>
-            <PatientJourney compact labels={["Поиск", "Клиника", "Врач", "Обращение", "Запись", "Консультация", "Лечение"]} />
+            <PatientJourney compact labels={["Поиск", "Клиника", "Врач", "Обращение", "Запись", "Консультация", "Лечение", "Оплата", "Повтор"]} />
           </div>
         </div>
       </section>
