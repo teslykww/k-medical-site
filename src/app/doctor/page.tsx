@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
+import { LeadForm } from "@/components/LeadForm";
 import { Pricing } from "@/components/Pricing";
 import { Reveal } from "@/components/motion/Reveal";
 import { baseUrl } from "@/content/site";
@@ -24,7 +25,7 @@ export default function DoctorPage() {
             <p className={styles.eyebrow}>Продвижение врачей</p>
             <h1>Превращаем экспертизу врача в поток записей — без обязанности жить в соцсетях</h1>
             <p>Сайт, медицинские площадки, отзывы, поиск, контент, видео и реклама работают вокруг одного специалиста — так, чтобы пациент понял, почему записаться именно к нему.</p>
-            <div className={styles.heroActions}><ButtonLink href="/diagnostic#form">Получить план продвижения врача</ButtonLink><ButtonLink href="#doctor-pricing" variant="secondary">Посмотреть форматы</ButtonLink></div>
+            <div className={styles.heroActions}><ButtonLink href="#doctor-form">Получить план продвижения врача</ButtonLink><ButtonLink href="#doctor-pricing" variant="secondary">Посмотреть форматы</ButtonLink></div>
           </div>
           <div className={styles.storyProfileStack} aria-label="Состав цифрового присутствия врача">
             <article><span>01</span><strong>Понятная специализация</strong><p>Пациент сразу узнаёт свою ситуацию.</p></article>
@@ -90,7 +91,7 @@ export default function DoctorPage() {
       </section>
 
       <section className="section" id="doctor-pricing">
-        <div className="container"><Reveal className={styles.sectionLead}><h2>Три уровня продвижения врача</h2></Reveal><Pricing /><p className={styles.pricingNote}>Рекламный бюджет, студийные съёмки и платные размещения считаются отдельно.</p></div>
+        <div className="container"><Reveal className={styles.sectionLead}><h2>Три уровня продвижения врача</h2><p>Выбираем уровень по задаче: сначала привести в порядок цифровой образ, создать стабильный канал новых записей или строить большое направление вокруг имени врача.</p></Reveal><Pricing /><p className={styles.pricingNote}>Рекламный бюджет, студийные съёмки и платные размещения считаются отдельно.</p></div>
       </section>
 
       <section className="section section-muted" id="clinic-doctor">
@@ -98,7 +99,7 @@ export default function DoctorPage() {
       </section>
 
       <section className="section">
-        <div className={`container ${styles.auditOffer}`}><div><p className={styles.eyebrow}>Doctor Audit</p><h2>Посмотрим, что пациент видит о враче прямо сейчас</h2><p>Проверим поиск по имени, сайт, медицинские площадки, отзывы, контент и путь к записи. После аудита будет понятно, что исправить первым и какие каналы стоит подключать дальше.</p><ButtonLink href="/diagnostic#form">Заказать аудит врача</ButtonLink></div><div className={styles.auditPrice}><strong>80 000 ₽</strong><span>7–10 рабочих дней</span></div></div>
+        <div className={`container ${styles.auditOffer}`}><div><p className={styles.eyebrow}>Doctor Audit</p><h2>Посмотрим, что пациент видит о враче прямо сейчас</h2><p>Проверим поиск по имени, сайт, медицинские площадки, отзывы, контент и путь к записи. После аудита будет понятно, что исправить первым и какие каналы стоит подключать дальше.</p><p>Если в течение 30 дней после аудита начинаем Doctor Growth или Doctor Authority, 50 000 ₽ засчитываются в запуск.</p><ButtonLink href="#doctor-form" eventLabel="doctor-audit">Заказать аудит врача</ButtonLink></div><div className={styles.auditPrice}><strong>80 000 ₽</strong><span>7–10 рабочих дней</span></div></div>
       </section>
 
       <section className={styles.doctorFinalCta}>
@@ -112,7 +113,7 @@ export default function DoctorPage() {
               <article className={styles.doctorFinalCard}>
                 <span>Для врача</span>
                 <p>Разберём специализацию, профессиональное имя, текущие страницы и точки роста записей.</p>
-                <ButtonLink href="/diagnostic#form" variant="light" eventLabel="doctor-final-self">
+                <ButtonLink href="#doctor-form" variant="light" eventLabel="doctor-final-self">
                   Обсудить своё продвижение
                 </ButtonLink>
               </article>
@@ -121,7 +122,7 @@ export default function DoctorPage() {
               <article className={styles.doctorFinalCard}>
                 <span>Для клиники</span>
                 <p>Покажем, как загрузить сильного специалиста и усилить через него конкретное направление.</p>
-                <ButtonLink href="/diagnostic#form" variant="light" eventLabel="doctor-final-clinic">
+                <ButtonLink href="#doctor-form" variant="light" eventLabel="doctor-final-clinic">
                   Обсудить продвижение врача клиники
                 </ButtonLink>
               </article>
@@ -129,6 +130,18 @@ export default function DoctorPage() {
           </div>
         </div>
       </section>
+
+      <section className="section" id="doctor-form">
+        <div className={`container ${styles.formSection}`}>
+          <div>
+            <p className={styles.eyebrow}>Первый шаг</p>
+            <h2>Расскажите, кого и зачем хотите продвигать</h2>
+            <p>Если вы врач — укажите специализацию, город и где принимаете. Если вы представляете клинику — напишите, какого специалиста и какое направление хотите развивать. На первой встрече предложим один основной формат и, если нужно, более ограниченный вариант.</p>
+          </div>
+          <div><h3>Обсудить продвижение врача</h3><LeadForm context="doctor" /></div>
+        </div>
+      </section>
+
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: "K‑Medical Doctor", provider: { "@type": "Organization", name: "K‑Medical", url: baseUrl }, description: metadata.description }} />
     </main>
   );

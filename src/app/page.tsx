@@ -29,6 +29,27 @@ const focusArticles = [
   "vozvrat-pacientov-iz-bazy",
 ].map((slug) => articles.find((article) => article.slug === slug)).filter(Boolean);
 
+const focusedProducts = [
+  {
+    number: "01",
+    title: "Какие услуги стоит развивать",
+    price: "150 000 ₽",
+    text: "Выбираем 1–3 приоритетных направления и считаем разумные ориентиры по спросу, загрузке и маркетинговому бюджету.",
+  },
+  {
+    number: "02",
+    title: "Аналитика и атрибуция",
+    price: "180 000 ₽",
+    text: "Приводим в порядок источники, UTM, звонки, формы, основные стадии обращения и отчётность — чтобы было понятно, какие каналы приводят записи.",
+  },
+  {
+    number: "03",
+    title: "Входящие обращения и конверсия",
+    price: "120 000 ₽",
+    text: "Помогаем получать больше записей из уже оплаченных звонков и заявок: пропущенные, скорость ответа, повторные касания и контроль обработки.",
+  },
+];
+
 export default function HomePage() {
   return (
     <main id="main-content">
@@ -126,11 +147,50 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section section-muted">
+        <div className={`container ${styles.auditOffer}`}>
+          <div>
+            <p className={styles.eyebrow}>Если пока неясно, с чего начинать</p>
+            <h2>Диагностика маркетинга — 150 000 ₽</h2>
+            <p>За 10 рабочих дней разберём рекламу, сайт, врачей, карты, отзывы, входящие обращения, аналитику и базу — и покажем, что действительно стоит менять первым. Диагностика не обязательна, если задача уже понятна и клиника готова сразу к сопровождению.</p>
+            <ButtonLink href="/diagnostic">Посмотреть диагностику</ButtonLink>
+          </div>
+          <div className={styles.auditPrice}><strong>10 рабочих дней</strong><span>100 000 ₽ засчитываются при переходе в основное сопровождение</span></div>
+        </div>
+      </section>
+
       <section className="section section-surface">
         <div className="container">
-          <Reveal className={styles.sectionLead}><h2>Можно начать с одной задачи или передать нам маркетинг клиники целиком</h2></Reveal>
+          <Reveal className={styles.sectionLead}>
+            <h2>Три формата регулярной работы — в зависимости от масштаба задачи</h2>
+            <p>Не нужно выбирать тариф по списку функций. Смотрим, сколько направлений вы хотите развивать и какой объём маркетинга действительно нужен клинике.</p>
+          </Reveal>
           <Pricing plans={clinicPlans} />
-          <p className={styles.pricingNote}>Рекламный бюджет оплачивается отдельно. Точный состав зависит от количества филиалов, направлений, каналов и задач.</p>
+          <p className={styles.pricingNote}>Рекламный бюджет оплачивается отдельно. Если у вас 3+ филиала, несколько регионов, брендов или сложная CRM / МИС‑архитектура, есть индивидуальный Enterprise‑формат — после обследования, сопровождение от 650 000 ₽/мес.</p>
+          <div className={styles.centerAction}><ButtonLink href="/diagnostic#form">Обсудить, какой формат подойдёт</ButtonLink></div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <Reveal className={styles.sectionLead}>
+            <h2>Если полный маркетинг пока не нужен, можно решить одну конкретную задачу</h2>
+            <p>Эти продукты нужны, когда проблема уже понятна и нет смысла покупать большое сопровождение ради одной точки.</p>
+          </Reveal>
+          <div className={styles.outcomeGrid}>
+            {focusedProducts.map((product, index) => (
+              <Reveal key={product.title} delay={index * 0.06}>
+                <article>
+                  <span>{product.number}</span>
+                  <h3>{product.title}</h3>
+                  <p>{product.text}</p>
+                  <p><strong>{product.price}</strong></p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+          <p className={styles.serviceNote}>Если одновременно не хватает приоритетов, нормальной аналитики и обработки входящих, есть комплект «Готовность к росту» — 390 000 ₽ за комплексную подготовку.</p>
+          <div className={styles.centerAction}><ButtonLink href="/diagnostic#form" variant="secondary">Обсудить точечную задачу</ButtonLink></div>
         </div>
       </section>
 

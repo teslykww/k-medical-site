@@ -6,16 +6,18 @@ import { getAttributionParams, trackEvent } from "@/lib/analytics";
 import styles from "./site.module.css";
 
 type FormState = "idle" | "submitting" | "success" | "error";
+type LeadFormContext = "diagnostic" | "doctor";
 
-export function LeadForm() {
+export function LeadForm({ context = "diagnostic" }: { context?: LeadFormContext }) {
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
   const started = useRef(false);
+  const isDoctor = context === "doctor";
 
   function handleStart() {
     if (started.current) return;
     started.current = true;
-    trackEvent("form_start", { form: "diagnostic" });
+    trackEvent("form_start", { form: context });
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -47,17 +49,18 @@ export function LeadForm() {
 
       setState("success");
       setMessage("Спасибо. Получили заявку. Свяжемся с вами и договоримся о коротком знакомстве.");
-      trackEvent("form_submit", { form: "diagnostic", status: "success" });
+      trackEvent("form_submit", { form: context, status: "success" });
       form.reset();
     } catch {
       setState("error");
       setMessage("Не удалось отправить запрос. Попробуйте ещё раз позже.");
-      trackEvent("form_submit", { form: "diagnostic", status: "error" });
+      trackEvent("form_submit", { form: context, status: "error" });
     }
   }
 
   return (
     <form className={styles.leadForm} onSubmit={handleSubmit} onFocus={handleStart}>
+      <input type="hidden" name="lead_context" value={context} />
       <div className={styles.formRow}>
         <label>
           <span>Ваше имя</span>
@@ -69,17 +72,21 @@ export function LeadForm() {
         </label>
       </div>
       <label>
-        <span>Клиника или город</span>
+        <span>{isDoctor ? "Врач / клиника / город" : "Клиника или город"}</span>
         <input name="clinic" autoComplete="organization" required minLength={2} />
       </label>
       <label>
-        <span>Что хотите улучшить?</span>
+        <span>{isDoctor ? "Что хотите получить от продвижения?" : "Что хотите улучшить?"}</span>
         <textarea
           name="context"
           rows={5}
           required
           minLength={10}
-          placeholder="Например: хотим увеличить поток на имплантацию; реклама есть, но результат нестабилен; хотим продвинуть нескольких врачей."
+          placeholder={
+            isDoctor
+              ? "Например: я врач, хочу больше записей на конкретные услуги; хотим продвигать имплантолога клиники; нужен аудит текущего цифрового присутствия."
+              : "Например: хотим увеличить поток на имплантацию; реклама есть, но результат нестабилен; хотим продвинуть нескольких врачей."
+          }
         />
       </label>
       <div className={styles.formHoneypot} aria-hidden>
@@ -95,7 +102,7 @@ export function LeadForm() {
         </span>
       </label>
       <button className={styles.formSubmit} type="submit" disabled={state === "submitting"}>
-        {state === "submitting" ? "Отправляем…" : "Обсудить задачу"}
+        {state === "submitting" ? "Отправляем…" : isDoctor ? "Обсудить продвижение" : "Обсудить задачу"}
         <ArrowRight aria-hidden size={18} />
       </button>
       {message ? (
