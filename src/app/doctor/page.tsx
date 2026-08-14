@@ -3,7 +3,9 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { Pricing } from "@/components/Pricing";
+import { ProductDetailsTrigger } from "@/components/ProductDetailsTrigger";
 import { Reveal } from "@/components/motion/Reveal";
+import { productDetails } from "@/content/products";
 import { baseUrl } from "@/content/site";
 import styles from "../pages.module.css";
 
@@ -99,7 +101,7 @@ export default function DoctorPage() {
       </section>
 
       <section className="section">
-        <div className={`container ${styles.auditOffer}`}><div><p className={styles.eyebrow}>Doctor Audit</p><h2>Посмотрим, что пациент видит о враче прямо сейчас</h2><p>Проверим поиск по имени, сайт, медицинские площадки, отзывы, контент и путь к записи. После аудита будет понятно, что исправить первым и какие каналы стоит подключать дальше.</p><p>Если в течение 30 дней после аудита начинаем «Рост» или «Личный бренд как отдельное направление», 50 000 ₽ засчитываются в запуск.</p><ButtonLink href="#doctor-form" eventLabel="doctor-audit">Заказать аудит врача</ButtonLink></div><div className={styles.auditPrice}><strong>80 000 ₽</strong><span>7–10 рабочих дней</span></div></div>
+        <div className={`container ${styles.auditOffer}`}><div><p className={styles.eyebrow}>Doctor Audit</p><h2>Посмотрим, что пациент видит о враче прямо сейчас</h2><p>Проверим поиск по имени, сайт, медицинские площадки, отзывы, контент и путь к записи. После аудита будет понятно, что исправить первым и какие каналы стоит подключать дальше.</p><p>Если в течение 30 дней после аудита начинаем «Рост» или «Личный бренд как отдельное направление», 50 000 ₽ засчитываются в запуск.</p><div className={styles.auditActions}><ProductDetailsTrigger detail={productDetails["doctor-audit"]} variant="compact" /><ButtonLink href="#doctor-form" eventLabel="doctor-audit">Заказать аудит врача</ButtonLink></div></div><div className={styles.auditPrice}><strong>80 000 ₽</strong><span>7–10 рабочих дней</span></div></div>
       </section>
 
       <section className={styles.doctorFinalCta}>

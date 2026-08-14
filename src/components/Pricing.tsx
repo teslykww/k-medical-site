@@ -1,7 +1,9 @@
 import { Check } from "@phosphor-icons/react/dist/ssr";
+import { productDetails } from "@/content/products";
 import { doctorPlans } from "@/content/site";
 import type { PricingPlan } from "@/content/types";
 import { ButtonLink } from "./ButtonLink";
+import { ProductDetailsTrigger } from "./ProductDetailsTrigger";
 import styles from "./site.module.css";
 
 type PricingProps = {
@@ -33,14 +35,19 @@ export function Pricing({ plans = doctorPlans, ctaHref = "/diagnostic#form" }: P
               </li>
             ))}
           </ul>
-          <ButtonLink
-            href={ctaHref}
-            variant={plan.highlighted ? "primary" : "secondary"}
-            event="pricing_cta_click"
-            eventLabel={plan.name}
-          >
-            Обсудить формат
-          </ButtonLink>
+          <div className={styles.pricingActions}>
+            {plan.detailId ? (
+              <ProductDetailsTrigger detail={productDetails[plan.detailId]} />
+            ) : null}
+            <ButtonLink
+              href={ctaHref}
+              variant={plan.highlighted ? "primary" : "secondary"}
+              event="pricing_cta_click"
+              eventLabel={plan.name}
+            >
+              Обсудить формат
+            </ButtonLink>
+          </div>
         </article>
       ))}
     </div>

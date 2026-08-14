@@ -134,6 +134,7 @@ export const referenceCases: CaseStudy[] = [
 export const clinicPlans: PricingPlan[] = [
   {
     name: "Фокус",
+    detailId: "clinic-focus",
     price: "от 200 000 ₽/мес.",
     launch: "Запуск: 50 000 ₽",
     term: "Минимум 3 месяца",
@@ -143,6 +144,7 @@ export const clinicPlans: PricingPlan[] = [
   },
   {
     name: "Рост",
+    detailId: "clinic-growth",
     price: "300 000 ₽/мес.",
     launch: "Запуск: 70 000 ₽",
     term: "Минимум 3 месяца",
@@ -153,6 +155,7 @@ export const clinicPlans: PricingPlan[] = [
   },
   {
     name: "Система",
+    detailId: "clinic-system",
     price: "от 490 000 ₽/мес.",
     launch: "Запуск: 100 000 ₽",
     term: "Минимум 3 месяца",
@@ -165,6 +168,7 @@ export const clinicPlans: PricingPlan[] = [
 export const dentalPlans: PricingPlan[] = [
   {
     name: "Dental Фокус",
+    detailId: "dental-focus",
     price: "от 200 000 ₽/мес.",
     launch: "Запуск: 50 000 ₽",
     term: "Минимум 3 месяца",
@@ -174,6 +178,7 @@ export const dentalPlans: PricingPlan[] = [
   },
   {
     name: "Dental Рост",
+    detailId: "dental-growth",
     price: "300 000 ₽/мес.",
     launch: "Запуск: 70 000 ₽",
     term: "Минимум 3 месяца",
@@ -184,6 +189,7 @@ export const dentalPlans: PricingPlan[] = [
   },
   {
     name: "Dental Система",
+    detailId: "dental-system",
     price: "от 490 000 ₽/мес.",
     launch: "Запуск: 100 000 ₽",
     term: "Минимум 3 месяца",
@@ -196,6 +202,7 @@ export const dentalPlans: PricingPlan[] = [
 export const doctorPlans: PricingPlan[] = [
   {
     name: "Присутствие",
+    detailId: "doctor-presence",
     price: "110 000 ₽/мес.",
     launch: "Запуск: 60 000 ₽",
     term: "Минимум 3 месяца",
@@ -205,6 +212,7 @@ export const doctorPlans: PricingPlan[] = [
   },
   {
     name: "Рост",
+    detailId: "doctor-growth",
     price: "220 000 ₽/мес.",
     launch: "Запуск: 90 000 ₽",
     term: "Минимум 4 месяца",
@@ -215,6 +223,7 @@ export const doctorPlans: PricingPlan[] = [
   },
   {
     name: "Личный бренд как отдельное направление",
+    detailId: "doctor-authority",
     price: "от 420 000 ₽/мес.",
     launch: "Запуск: от 150 000 ₽",
     term: "Минимум 6 месяцев",

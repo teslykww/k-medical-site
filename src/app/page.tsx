@@ -9,11 +9,14 @@ import { HeroExperience } from "@/components/HeroExperience";
 import { JsonLd } from "@/components/JsonLd";
 import { MarketingStoryStack } from "@/components/MarketingStoryStack";
 import { Pricing } from "@/components/Pricing";
+import { ProductDetailsTrigger } from "@/components/ProductDetailsTrigger";
 import { ReportPreview } from "@/components/ReportPreview";
 import { Team } from "@/components/Team";
 import { Reveal } from "@/components/motion/Reveal";
 import { articles } from "@/content/articles";
+import { productDetails } from "@/content/products";
 import { baseUrl, clinicFaq, clinicPlans, siteName } from "@/content/site";
+import type { ProductDetailId } from "@/content/types";
 import styles from "./pages.module.css";
 
 export const metadata: Metadata = {
@@ -31,21 +34,24 @@ const focusArticles = [
 
 const focusedProducts = [
   {
+    detailId: "clinic-priorities",
     title: "Какие услуги стоит развивать",
     price: "150 000 ₽",
     text: "Выбираем 1–3 приоритетных направления и считаем разумные ориентиры по спросу, загрузке и маркетинговому бюджету.",
   },
   {
+    detailId: "clinic-analytics",
     title: "Аналитика и атрибуция",
     price: "180 000 ₽",
     text: "Приводим в порядок источники, UTM, звонки, формы, основные стадии обращения и отчётность — чтобы было понятно, какие каналы приводят записи.",
   },
   {
+    detailId: "clinic-conversion",
     title: "Входящие обращения и конверсия",
     price: "120 000 ₽",
     text: "Помогаем получать больше записей из уже оплаченных звонков и заявок: пропущенные, скорость ответа, повторные касания и контроль обработки.",
   },
-];
+] satisfies Array<{ detailId: ProductDetailId; title: string; price: string; text: string }>;
 
 export default function HomePage() {
   return (
@@ -163,7 +169,18 @@ export default function HomePage() {
             <p>Не нужно выбирать тариф по списку функций. Смотрим, сколько направлений вы хотите развивать и какой объём маркетинга действительно нужен клинике.</p>
           </Reveal>
           <Pricing plans={clinicPlans} />
-          <p className={styles.pricingNote}>Рекламный бюджет оплачивается отдельно. Если у вас 3+ филиала, несколько регионов, брендов или сложная CRM / МИС‑архитектура, есть индивидуальный Enterprise‑формат — после обследования, сопровождение от 650 000 ₽/мес.</p>
+          <article className={styles.supportingProduct}>
+            <div>
+              <span>Для сложной структуры</span>
+              <h3>Enterprise</h3>
+              <p>Для 3+ филиалов, нескольких регионов или брендов и сложной CRM / МИС‑архитектуры. Сначала обследование, затем индивидуальный состав команды.</p>
+            </div>
+            <div className={styles.supportingProductAside}>
+              <strong>от 650 000 ₽/мес.</strong>
+              <ProductDetailsTrigger detail={productDetails["clinic-enterprise"]} variant="compact" />
+            </div>
+          </article>
+          <p className={styles.pricingNote}>Рекламный бюджет оплачивается отдельно.</p>
           <div className={styles.centerAction}><ButtonLink href="/diagnostic#form">Обсудить, какой формат подойдёт</ButtonLink></div>
         </div>
       </section>
@@ -181,12 +198,28 @@ export default function HomePage() {
                   <span>Точечный продукт</span>
                   <h3>{product.title}</h3>
                   <p>{product.text}</p>
-                  <strong className={styles.focusedProductPrice}>{product.price}</strong>
+                  <div className={styles.focusedProductFooter}>
+                    <strong className={styles.focusedProductPrice}>{product.price}</strong>
+                    <ProductDetailsTrigger
+                      detail={productDetails[product.detailId]}
+                      variant={index === 0 ? "inverse" : "compact"}
+                    />
+                  </div>
                 </article>
               </Reveal>
             ))}
           </div>
-          <p className={styles.serviceNote}>Если одновременно не хватает приоритетов, нормальной аналитики и обработки входящих, есть комплект «Готовность к росту» — 390 000 ₽ за комплексную подготовку.</p>
+          <article className={`${styles.supportingProduct} ${styles.supportingProductWarm}`}>
+            <div>
+              <span>Комплексная подготовка</span>
+              <h3>Готовность к росту</h3>
+              <p>Приоритеты, аналитика и обработка входящих в одном проекте. Для клиник, которые хотят сначала собрать надёжную основу, а затем масштабировать продвижение.</p>
+            </div>
+            <div className={styles.supportingProductAside}>
+              <strong>390 000 ₽</strong>
+              <ProductDetailsTrigger detail={productDetails["clinic-readiness"]} variant="compact" />
+            </div>
+          </article>
           <div className={styles.centerAction}><ButtonLink href="/diagnostic#form" variant="secondary">Обсудить точечную задачу</ButtonLink></div>
         </div>
       </section>

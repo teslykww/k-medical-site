@@ -695,6 +695,21 @@
   margin-top: auto;
 }
 
+.pricingActions {
+  margin-top: auto;
+  display: grid;
+  gap: 10px;
+}
+
+.pricingActions .button,
+.pricingActions .productDetailTrigger {
+  width: 100%;
+}
+
+.pricingActions .button {
+  margin-top: 0;
+}
+
 .faq {
   max-width: 900px;
 }
@@ -1766,6 +1781,458 @@
   color: var(--brand);
 }
 
+.productDetailTrigger {
+  min-height: 48px;
+  width: fit-content;
+  padding: 0 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-control);
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--foreground);
+  background: transparent;
+  font-size: 0.86rem;
+  font-weight: 720;
+  line-height: 1.2;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.productDetailTrigger svg {
+  transition: transform 220ms var(--ease-out);
+}
+
+.productDetailTrigger:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 4%, transparent);
+}
+
+.productDetailTrigger:hover svg {
+  transform: translateX(3px);
+}
+
+.productDetailTrigger:active {
+  transform: translateY(1px);
+}
+
+.productDetailTriggerInverse {
+  border-color: color-mix(in srgb, var(--surface) 46%, transparent);
+  color: var(--surface);
+}
+
+.productDetailTriggerInverse:hover {
+  border-color: var(--surface);
+  color: var(--surface);
+  background: color-mix(in srgb, var(--surface) 10%, transparent);
+}
+
+.productDetailTriggerCompact {
+  min-height: 42px;
+  padding-inline: 15px;
+  gap: 16px;
+  font-size: 0.79rem;
+}
+
+.productDialog {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  color: var(--foreground);
+  background: transparent;
+}
+
+.productDialog::backdrop {
+  background: color-mix(in srgb, #07150f 66%, transparent);
+  backdrop-filter: blur(7px);
+  animation: product-backdrop-in 360ms ease both;
+}
+
+.productDialogClosing::backdrop {
+  animation: product-backdrop-out 340ms ease both;
+}
+
+.productDrawer {
+  container-type: inline-size;
+  width: min(720px, calc(100vw - 48px));
+  height: 100dvh;
+  margin-left: auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--surface);
+  box-shadow: -30px 0 90px rgb(5 23 16 / 24%);
+  animation: product-drawer-in 430ms var(--ease-out) both;
+  scrollbar-gutter: stable;
+}
+
+.productDialogClosing .productDrawer {
+  animation: product-drawer-out 340ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+.productDrawerHero {
+  position: relative;
+  min-height: 560px;
+  padding: clamp(38px, 6vw, 72px);
+  padding-top: clamp(70px, 8vw, 94px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 64px;
+  overflow: hidden;
+  color: var(--surface);
+  background:
+    radial-gradient(circle at 96% 6%, rgb(217 103 72 / 26%), transparent 32%),
+    linear-gradient(145deg, #063d30 0%, var(--brand) 50%, #08382d 100%);
+}
+
+.productDrawerHero::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 5%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 5%) 1px, transparent 1px);
+  background-size: 64px 64px;
+  content: "";
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.productDrawerHero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.productDrawerClose {
+  position: absolute;
+  z-index: 3;
+  top: 22px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--surface);
+  background: rgb(255 255 255 / 8%);
+  backdrop-filter: blur(12px);
+  transition: background 180ms ease, transform 220ms var(--ease-out);
+}
+
+.productDrawerClose:hover {
+  background: rgb(255 255 255 / 16%);
+  transform: rotate(4deg);
+}
+
+.productDrawerSegment,
+.productDrawerKicker {
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 780;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.productDrawerName {
+  margin-top: 22px;
+  color: color-mix(in srgb, var(--surface) 72%, transparent);
+  font-size: 0.88rem;
+  font-weight: 660;
+}
+
+.productDrawerHero h2 {
+  max-width: 16.5ch;
+  margin-top: 14px;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(2.4rem, 8cqi, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.99;
+  text-wrap: balance;
+}
+
+.productDrawerLead {
+  max-width: 55ch;
+  margin-top: 26px;
+  color: color-mix(in srgb, var(--surface) 76%, transparent);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.productDrawerCommercial {
+  padding-top: 28px;
+  border-top: 1px solid rgb(255 255 255 / 20%);
+  display: grid;
+  grid-template-columns: minmax(190px, 0.75fr) 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.productDrawerCommercial > strong {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(1.65rem, 4vw, 2.55rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.productDrawerCommercial ul {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  color: color-mix(in srgb, var(--surface) 70%, transparent);
+  font-size: 0.78rem;
+  line-height: 1.48;
+}
+
+.productDrawerCommercial li {
+  position: relative;
+  padding-left: 15px;
+}
+
+.productDrawerCommercial li::before {
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+}
+
+.productDrawerBody {
+  padding: 0 clamp(28px, 6vw, 72px) 76px;
+}
+
+.productDrawerIntro {
+  padding: clamp(48px, 7vw, 76px) 0;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.productDrawerIntro > div > p:last-child {
+  margin-top: 16px;
+  color: var(--foreground-muted);
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+.productDrawerIntro aside {
+  padding: 28px;
+  border-radius: var(--radius-card);
+  color: var(--surface);
+  background: var(--brand);
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--brand) 15%, transparent);
+}
+
+.productDrawerIntro aside span {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 780;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.productDrawerIntro aside strong {
+  margin-top: 18px;
+  display: block;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(1.3rem, 2.7vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.22;
+}
+
+.productDrawerSection {
+  padding: clamp(54px, 7vw, 78px) 0;
+  border-top: 1px solid var(--border);
+}
+
+.productDrawerSectionHeading {
+  margin-bottom: 38px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.productDrawerSectionHeading span {
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 760;
+}
+
+.productDrawerSectionHeading h3 {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(1.8rem, 3.6vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.productScopeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.productScopeGrid article {
+  min-height: 210px;
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--surface-muted) 52%, var(--surface));
+}
+
+.productScopeGrid h4 {
+  font-size: 0.94rem;
+  line-height: 1.35;
+}
+
+.productScopeGrid ul {
+  margin-top: 22px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.productScopeGrid li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  color: var(--foreground-muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.productScopeGrid li svg {
+  margin-top: 3px;
+  color: var(--brand);
+}
+
+.productDeliverables {
+  border-top: 1px solid var(--border);
+}
+
+.productDeliverables > div {
+  min-height: 88px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.productDeliverables span {
+  color: var(--accent);
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 1.25rem;
+}
+
+.productDeliverables p {
+  max-width: 50ch;
+  font-size: 0.93rem;
+  font-weight: 620;
+  line-height: 1.5;
+}
+
+.productDrawerNarrative dl {
+  display: grid;
+}
+
+.productDrawerNarrative dl > div {
+  padding: 26px 0;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 0.68fr 1.32fr;
+  gap: 28px;
+}
+
+.productDrawerNarrative dl > div:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.productDrawerNarrative dt {
+  color: var(--brand);
+  font-size: 0.77rem;
+  font-weight: 760;
+}
+
+.productDrawerNarrative dd {
+  color: var(--foreground-muted);
+  font-size: 0.87rem;
+  line-height: 1.68;
+}
+
+.productDrawerFooter {
+  position: sticky;
+  z-index: 5;
+  bottom: 0;
+  min-height: 104px;
+  padding: 18px clamp(28px, 6vw, 72px);
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: 24px;
+  align-items: center;
+  color: var(--surface);
+  background: color-mix(in srgb, var(--brand-hover) 94%, transparent);
+  box-shadow: 0 -14px 44px rgb(5 24 17 / 18%);
+  backdrop-filter: blur(16px);
+}
+
+.productDrawerFooter > div {
+  display: grid;
+  gap: 3px;
+}
+
+.productDrawerFooter > div span {
+  color: color-mix(in srgb, var(--surface) 60%, transparent);
+  font-size: 0.68rem;
+}
+
+.productDrawerFooter > div strong {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.productDrawerCta {
+  width: 100%;
+  justify-content: space-between;
+}
+
+@keyframes product-drawer-in {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes product-drawer-out {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+@keyframes product-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes product-backdrop-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
 @keyframes type-cursor {
   0%, 48% { opacity: 1; }
   49%, 100% { opacity: 0; }
@@ -1783,6 +2250,64 @@
 }
 
 @media (max-width: 767px) {
+  .productDrawer {
+    width: 100%;
+  }
+
+  .productDrawerHero {
+    min-height: 540px;
+    padding: 74px 24px 36px;
+    gap: 50px;
+  }
+
+  .productDrawerClose {
+    top: 16px;
+    right: 16px;
+  }
+
+  .productDrawerHero h2 {
+    max-width: 14ch;
+    font-size: clamp(2.2rem, 11vw, 3.7rem);
+  }
+
+  .productDrawerCommercial,
+  .productDrawerIntro,
+  .productDrawerNarrative dl > div {
+    grid-template-columns: 1fr;
+  }
+
+  .productDrawerCommercial,
+  .productDrawerIntro {
+    gap: 24px;
+  }
+
+  .productDrawerBody {
+    padding: 0 22px 62px;
+  }
+
+  .productScopeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .productScopeGrid article {
+    min-height: 0;
+  }
+
+  .productDrawerNarrative dl > div {
+    gap: 12px;
+  }
+
+  .productDrawerFooter {
+    min-height: 0;
+    padding: 14px 18px calc(14px + env(safe-area-inset-bottom));
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .productDrawerFooter > div {
+    display: none;
+  }
+
   .heroExperience {
     aspect-ratio: 4 / 5;
     margin-top: 6px;
@@ -1882,6 +2407,15 @@
   .caseCard:hover .caseImage img {
     transform: none;
   }
+
+  .productDetailTrigger:hover,
+  .productDrawerClose:hover {
+    transform: none;
+  }
+
+  .productDetailTrigger:hover svg {
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1897,9 +2431,19 @@
   .caseContent > a svg,
   .pricingCard,
   .articleCard,
-  .faq summary {
+  .faq summary,
+  .productDetailTrigger,
+  .productDetailTrigger svg,
+  .productDrawer,
+  .productDrawerClose {
     animation: none;
     transition: none;
+  }
+
+  .productDialog::backdrop,
+  .productDialogClosing::backdrop,
+  .productDialogClosing .productDrawer {
+    animation: none;
   }
 
   .typeCursor {

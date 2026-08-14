@@ -26,7 +26,7 @@ Focused inspection was applied to the hero typography, primary and secondary CTA
 
 - Fonts and typography: Manrope provides the modern clinical sans; Lora is restricted to the wordmark and editorial accents. Headline scale and wrapping were corrected after the first pass to match the source hierarchy more closely.
 - Spacing and layout rhythm: asymmetric desktop hero and single-column mobile flow match the target intent. Section rhythm, dividers and restrained card use remain consistent.
-- Colors and tokens: cool mineral background, deep forest green and one coral accent are consistent across pages. No gradients are used.
+- Colors and tokens: cool mineral background, deep forest green and one coral accent are consistent across pages. Нет конкурирующих многоцветных градиентов; drawer использует только спокойный однотональный forest‑переход для глубины верхнего слоя.
 - Image quality: source-matched generated raster assets load through `next/image`; the primary hero asset was verified at natural width 691 px in the rendered 1440 px viewport.
 - Copy and content: source copy remains factual; no invented clients, metrics, testimonials or team portraits. Unconfirmed delivery and legal inputs remain internal or are stated truthfully at the interaction point.
 - Icons and controls: one Phosphor family is used. Primary controls meet mobile tap sizing and visible focus rules.
@@ -99,3 +99,14 @@ Post-fix desktop and mobile captures show the corrected hierarchy. The route ima
 - Integrated the Doctor form into the existing dark final conversion surface instead of adding a detached white ending after it.
 - Fixed all Doctor pricing CTAs to target `#doctor-form`; clinic and Dental pricing retain the clinical diagnostic route.
 - Replaced internal Doctor tier names in public audit copy with the public Russian product names and clarified the Doctor form label and example.
+
+### Pass 7 — detailed product drawer
+
+- Added one reusable right-side product drawer for all 15 public product descriptions while preserving the existing pages, pricing composition and approved visual direction.
+- Checked clinic Focus, Dental Growth, Doctor Growth and Doctor Audit in the browser. Each opens the correct title, commercial terms, grouped scope, deliverables and its own CTA.
+- Desktop QA: 720 px drawer on the right, readable editorial title, dimmed/blurred page context, sticky price/action surface and no console warnings or errors.
+- Mobile QA at 390 × 844: full-width drawer, one-column groups, correctly wrapping commercial terms, no horizontal overflow (`scrollWidth = 390`) and a full-width sticky CTA above the safe area.
+- Interaction QA: close button, Escape and backdrop click all close with the intended transition; focus starts on the close control and returns to the initiating `Что входит` button.
+- The dialog is portalled to the document top layer so pricing-card styles cannot leak into the detailed content.
+- `prefers-reduced-motion`, coarse pointer and narrow-screen fallbacks are explicit. No decorative product image was introduced because the detailed service content benefits more from clear hierarchy and uninterrupted reading.
+- Lint, typecheck and production build pass; all 19 static pages remain generated. The private Pilot product is absent from public source content and UI.

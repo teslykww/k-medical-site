@@ -51,6 +51,51 @@ export type PricingPlan = {
   description: string;
   features: string[];
   highlighted?: boolean;
+  detailId?: ProductDetailId;
+};
+
+export type ProductDetailId =
+  | "clinic-focus"
+  | "clinic-growth"
+  | "clinic-system"
+  | "clinic-enterprise"
+  | "clinic-priorities"
+  | "clinic-analytics"
+  | "clinic-conversion"
+  | "clinic-readiness"
+  | "dental-focus"
+  | "dental-growth"
+  | "dental-system"
+  | "doctor-audit"
+  | "doctor-presence"
+  | "doctor-growth"
+  | "doctor-authority";
+
+export type ProductScopeGroup = {
+  title: string;
+  items: string[];
+};
+
+export type ProductDetail = {
+  id: ProductDetailId;
+  segment: string;
+  name: string;
+  title: string;
+  lead: string;
+  price: string;
+  terms: string[];
+  audience: string;
+  outcome: string;
+  scope: ProductScopeGroup[];
+  deliverables: string[];
+  start: string;
+  rationale: string;
+  alternative: string;
+  exclusions?: string;
+  cta: {
+    label: string;
+    href: string;
+  };
 };
 
 export type FAQItem = {

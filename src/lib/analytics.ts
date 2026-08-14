@@ -5,7 +5,8 @@ export type AnalyticsEvent =
   | "phone_click"
   | "messenger_click"
   | "article_cta_click"
-  | "pricing_cta_click";
+  | "pricing_cta_click"
+  | "product_detail_open";
 
 type AnalyticsPayload = Record<string, string | number | boolean | undefined>;
 
@@ -45,4 +46,3 @@ export function getAttributionParams(searchParams: URLSearchParams) {
       .filter(([, value]) => Boolean(value)),
   );
 }
-
