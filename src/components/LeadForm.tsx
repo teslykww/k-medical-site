@@ -5,7 +5,7 @@ import { FormEvent, useRef, useState } from "react";
 import { getAttributionParams, trackEvent } from "@/lib/analytics";
 import styles from "./site.module.css";
 
-type FormState = "idle" | "submitting" | "success" | "error" | "not-configured";
+type FormState = "idle" | "submitting" | "success" | "error";
 
 export function LeadForm() {
   const [state, setState] = useState<FormState>("idle");
@@ -27,10 +27,8 @@ export function LeadForm() {
 
     const endpoint = process.env.NEXT_PUBLIC_LEAD_FORM_ENDPOINT;
     if (!endpoint) {
-      setState("not-configured");
-      setMessage(
-        "Это предварительная версия формы, поэтому заявка сейчас не отправлена. Перед запуском мы подключим подтверждённый контакт команды.",
-      );
+      setState("error");
+      setMessage("Не удалось отправить запрос. Попробуйте ещё раз позже.");
       return;
     }
 
@@ -53,7 +51,7 @@ export function LeadForm() {
       form.reset();
     } catch {
       setState("error");
-      setMessage("Не удалось доставить запрос. Попробуйте ещё раз или используйте подтверждённый контакт команды.");
+      setMessage("Не удалось отправить запрос. Попробуйте ещё раз позже.");
       trackEvent("form_submit", { form: "diagnostic", status: "error" });
     }
   }

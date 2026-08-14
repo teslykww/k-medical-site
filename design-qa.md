@@ -79,3 +79,14 @@ Post-fix desktop and mobile captures show the corrected hierarchy. The route ima
 - No horizontal overflow was found on the tested routes. Browser console warnings/errors: none.
 - HTTP 200 verified for all five index routes, all eight article routes, `/robots.txt` and `/sitemap.xml`.
 - Preview indexing remains blocked both in metadata and `robots.txt` until `NEXT_PUBLIC_ALLOW_INDEXING=true` is explicitly configured.
+
+### Pass 5 — Doctor audience split and client-facing cleanup
+
+- Added the explicit `Я врач` / `Я представляю клинику` decision immediately after the Doctor hero without changing the approved hero, typography, palette or motion system.
+- Kept one shared Doctor page and one pricing line. The audience cards route to the existing pricing and clinic-benefit sections rather than creating duplicate products.
+- Added two distinct final conversion paths for a doctor and for a clinic, each with its own analytics label.
+- Removed temporary phone, WhatsApp and Telegram placeholders from the public footer. The Cases navigation item and all three visibly labelled reference cases remain by explicit product decision.
+- Replaced the form's internal preview explanation with a neutral delivery error while preserving all four approved fields and their order.
+- Updated the Open Graph message to the current patient-first positioning. Preview indexing remains env-gated.
+- Production build, lint and type checks pass for all 19 generated pages. Desktop browser QA confirmed the audience split, card offset, anchor destination, CTA contrast, footer cleanup and three retained cases; no browser warnings or errors were found.
+- Mobile fallbacks are explicit at the established `860px` and `767px` breakpoints: both new grids collapse to one column, the offset is removed, card heights become automatic and the long clinic CTA receives a full-width compact treatment.

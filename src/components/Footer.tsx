@@ -24,11 +24,6 @@ export function Footer() {
         </nav>
 
         <div className={styles.footerMeta}>
-          <div className={styles.footerContacts}>
-            <span>+7 (000) 000-00-00</span>
-            <span>WhatsApp: @kmedical</span>
-            <span>Telegram: @kmedical</span>
-          </div>
           <p>Привлечение пациентов · сайты и поиск · репутация · продвижение врачей · CRM‑маркетинг · аналитика</p>
           <p>© {new Date().getFullYear()} K‑Medical</p>
         </div>

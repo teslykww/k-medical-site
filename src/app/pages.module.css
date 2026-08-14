@@ -1153,6 +1153,202 @@
     linear-gradient(135deg, var(--background), color-mix(in srgb, var(--surface-muted) 58%, var(--background)));
 }
 
+.audienceSection {
+  position: relative;
+  overflow: hidden;
+}
+
+.audienceSection::before {
+  position: absolute;
+  right: -10vw;
+  top: 12%;
+  width: 34vw;
+  height: 34vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand) 9%, transparent), transparent 70%);
+  content: "";
+  pointer-events: none;
+}
+
+.audienceIntro {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  margin-bottom: clamp(38px, 5vw, 64px);
+}
+
+.audienceIntro h2 {
+  max-width: 24ch;
+  font-size: var(--step-3);
+  font-weight: 570;
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.audienceGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.audienceReveal,
+.doctorFinalReveal {
+  height: 100%;
+}
+
+.audienceCard {
+  min-height: 430px;
+  height: 100%;
+  padding: clamp(30px, 4vw, 50px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--surface);
+  box-shadow: 0 24px 70px color-mix(in srgb, var(--brand) 7%, transparent);
+  transition: transform 260ms var(--ease-out), border-color 220ms ease, box-shadow 260ms ease;
+}
+
+.audienceCardClinic {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--brand) 8%, var(--surface)), var(--surface) 68%);
+  transform: translateY(28px);
+}
+
+.audienceNumber {
+  color: var(--accent);
+  font-family: var(--font-editorial), serif;
+  font-size: 1rem;
+}
+
+.audienceCard h3 {
+  margin-top: 46px;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  font-weight: 570;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.audienceCard p {
+  max-width: 50ch;
+  margin-top: 24px;
+  color: var(--foreground-muted);
+  line-height: 1.68;
+}
+
+.audienceCard strong {
+  max-width: 42ch;
+  margin: 24px 0 34px;
+  display: block;
+  color: var(--brand);
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+
+.audienceCard > a {
+  margin-top: auto;
+}
+
+.audienceCard:hover {
+  border-color: color-mix(in srgb, var(--brand) 42%, var(--border));
+  box-shadow: 0 30px 82px color-mix(in srgb, var(--brand) 12%, transparent);
+  transform: translateY(-4px);
+}
+
+.audienceCardClinic:hover {
+  transform: translateY(20px);
+}
+
+.doctorFinalCta {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(76px, 9vw, 120px) 0;
+  background: var(--brand);
+  color: var(--surface);
+}
+
+.doctorFinalCta::after {
+  position: absolute;
+  right: -6%;
+  bottom: -45%;
+  width: 46vw;
+  height: 46vw;
+  border: 1px solid color-mix(in srgb, var(--surface) 18%, transparent);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.doctorFinalInner {
+  position: relative;
+  z-index: 1;
+}
+
+.doctorFinalIntro {
+  max-width: 820px;
+}
+
+.doctorFinalIntro h2 {
+  max-width: 19ch;
+  font-family: var(--font-editorial), serif;
+  font-size: var(--step-4);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.doctorFinalIntro p {
+  max-width: 62ch;
+  margin-top: 20px;
+  color: color-mix(in srgb, var(--surface) 78%, transparent);
+  line-height: 1.65;
+}
+
+.doctorFinalGrid {
+  margin-top: clamp(40px, 5vw, 62px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 18px;
+}
+
+.doctorFinalCard {
+  min-height: 250px;
+  height: 100%;
+  padding: clamp(26px, 3vw, 38px);
+  border: 1px solid color-mix(in srgb, var(--surface) 24%, transparent);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--surface) 7%, transparent);
+}
+
+.doctorFinalCard > span {
+  color: color-mix(in srgb, var(--surface) 72%, transparent);
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.doctorFinalCard p {
+  max-width: 52ch;
+  margin: 22px 0 32px;
+  color: var(--surface);
+  font-size: 1.06rem;
+  line-height: 1.62;
+}
+
+.doctorFinalCard > a {
+  margin-top: auto;
+}
+
 .diagnosticHeroV2 {
   background:
     radial-gradient(circle at 86% 18%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 28%),
@@ -1661,6 +1857,8 @@
   .innerHeroGrid,
   .reportIntro,
   .directionPair,
+  .audienceGrid,
+  .doctorFinalGrid,
   .doctorBridge,
   .twoColumnStatement,
   .formSection {
@@ -1674,6 +1872,10 @@
 
   .innerHeroGrid {
     gap: 50px;
+  }
+
+  .audienceCardClinic {
+    transform: none;
   }
 
   .doctorChecklist,
@@ -1710,6 +1912,29 @@
 
   .heroActions {
     display: grid;
+  }
+
+  .audienceIntro h2,
+  .doctorFinalIntro h2 {
+    max-width: none;
+    font-size: var(--step-3);
+  }
+
+  .audienceCard,
+  .doctorFinalCard {
+    min-height: 0;
+    padding: 28px;
+  }
+
+  .audienceCard h3 {
+    margin-top: 30px;
+  }
+
+  .doctorFinalCard > a {
+    width: 100%;
+    padding-inline: 14px;
+    gap: 8px;
+    font-size: 0.78rem;
   }
 
   .channelLine {
@@ -1867,7 +2092,9 @@
 @media (hover: none), (pointer: coarse) {
   .outcomeGrid article:hover,
   .storyProfileStack article:hover,
-  .channelCloud span:hover {
+  .channelCloud span:hover,
+  .audienceCard:hover,
+  .audienceCardClinic:hover {
     box-shadow: none;
     transform: none;
   }
@@ -1877,13 +2104,16 @@
   .outcomeGrid article,
   .routeRibbon span::before,
   .storyProfileStack article,
-  .channelCloud span {
+  .channelCloud span,
+  .audienceCard {
     transition: none;
   }
 
   .outcomeGrid article:hover,
   .storyProfileStack article:hover,
-  .channelCloud span:hover {
+  .channelCloud span:hover,
+  .audienceCard:hover,
+  .audienceCardClinic:hover {
     box-shadow: none;
     transform: none;
   }

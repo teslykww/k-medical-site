@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ButtonLink";
-import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
 import { Pricing } from "@/components/Pricing";
 import { Reveal } from "@/components/motion/Reveal";
@@ -35,6 +34,38 @@ export default function DoctorPage() {
         </div>
       </section>
 
+      <section className={`section section-surface ${styles.audienceSection}`}>
+        <div className="container">
+          <Reveal className={styles.audienceIntro}>
+            <h2>Если вы врач, строим поток записей вокруг вашего имени. Если вы клиника, усиливаем врача как точку привлечения пациентов</h2>
+          </Reveal>
+          <div className={styles.audienceGrid}>
+            <Reveal className={styles.audienceReveal}>
+              <article className={`${styles.audienceCard} ${styles.audienceCardDoctor}`}>
+                <span className={styles.audienceNumber}>01</span>
+                <h3>Я врач</h3>
+                <p>Хочу больше записей и сильное профессиональное имя, но не хочу превращать продвижение во вторую работу.</p>
+                <strong>Превращаем вашу экспертизу в поток записей без обязанности жить в соцсетях.</strong>
+                <ButtonLink href="#doctor-pricing" variant="secondary" eventLabel="doctor-self">
+                  Посмотреть продвижение для врача
+                </ButtonLink>
+              </article>
+            </Reveal>
+            <Reveal className={styles.audienceReveal} delay={0.08}>
+              <article className={`${styles.audienceCard} ${styles.audienceCardClinic}`}>
+                <span className={styles.audienceNumber}>02</span>
+                <h3>Я представляю клинику</h3>
+                <p>Хочу загрузить сильного специалиста и развивать направление через его имя, экспертизу и репутацию.</p>
+                <strong>Помогаем превратить сильного врача в отдельную точку привлечения пациентов и роста направления.</strong>
+                <ButtonLink href="#clinic-doctor" variant="secondary" eventLabel="doctor-clinic">
+                  Продвижение врача для клиники
+                </ButtonLink>
+              </article>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
           <Reveal className={styles.sectionLead}><h2>До записи пациент видит не вашу практику. Он видит то, что нашёл в интернете</h2><p>Даже сильный врач может выглядеть слабее конкурента, если на сайте три строки биографии, в одном сервисе старое фото, в другом неверный стаж, отзывам никто не отвечает, а по имени врача почти ничего не находится.</p><p>Мы приводим эту картину в порядок и собираем вокруг врача понятный цифровой образ.</p></Reveal>
@@ -62,7 +93,7 @@ export default function DoctorPage() {
         <div className="container"><Reveal className={styles.sectionLead}><h2>Три уровня продвижения врача</h2></Reveal><Pricing /><p className={styles.pricingNote}>Рекламный бюджет, студийные съёмки и платные размещения считаются отдельно.</p></div>
       </section>
 
-      <section className="section section-muted">
+      <section className="section section-muted" id="clinic-doctor">
         <div className={`container ${styles.twoColumnStatement}`}><h2>Продвигать сильного врача выгодно и клинике, и самому врачу</h2><div><p>Клиника получает более сильное направление и специалиста, которого проще выбирать пациентам. Врач получает актив, который усиливает его репутацию и профессиональное имя.</p><p>При совместном проекте заранее фиксируем правила работы с аккаунтами, контентом и обращениями — без вынесения юридических деталей в продающий экран.</p></div></div>
       </section>
 
@@ -70,7 +101,34 @@ export default function DoctorPage() {
         <div className={`container ${styles.auditOffer}`}><div><p className={styles.eyebrow}>Doctor Audit</p><h2>Посмотрим, что пациент видит о враче прямо сейчас</h2><p>Проверим поиск по имени, сайт, медицинские площадки, отзывы, контент и путь к записи. После аудита будет понятно, что исправить первым и какие каналы стоит подключать дальше.</p><ButtonLink href="/diagnostic#form">Заказать аудит врача</ButtonLink></div><div className={styles.auditPrice}><strong>80 000 ₽</strong><span>7–10 рабочих дней</span></div></div>
       </section>
 
-      <CTASection cta={{ title: "Хотите, чтобы имя врача само помогало приводить пациентов?", description: "Пришлите ФИО врача, специализацию, город и ссылки на текущие страницы. Посмотрим цифровое присутствие и предложим формат продвижения.", label: "Обсудить продвижение врача", href: "/diagnostic#form" }} />
+      <section className={styles.doctorFinalCta}>
+        <div className={`container ${styles.doctorFinalInner}`}>
+          <Reveal className={styles.doctorFinalIntro}>
+            <h2>Хотите, чтобы имя врача само помогало приводить пациентов?</h2>
+            <p>Выберите свой сценарий. Посмотрим текущее цифровое присутствие и предложим понятный формат продвижения.</p>
+          </Reveal>
+          <div className={styles.doctorFinalGrid}>
+            <Reveal className={styles.doctorFinalReveal}>
+              <article className={styles.doctorFinalCard}>
+                <span>Для врача</span>
+                <p>Разберём специализацию, профессиональное имя, текущие страницы и точки роста записей.</p>
+                <ButtonLink href="/diagnostic#form" variant="light" eventLabel="doctor-final-self">
+                  Обсудить своё продвижение
+                </ButtonLink>
+              </article>
+            </Reveal>
+            <Reveal className={styles.doctorFinalReveal} delay={0.08}>
+              <article className={styles.doctorFinalCard}>
+                <span>Для клиники</span>
+                <p>Покажем, как загрузить сильного специалиста и усилить через него конкретное направление.</p>
+                <ButtonLink href="/diagnostic#form" variant="light" eventLabel="doctor-final-clinic">
+                  Обсудить продвижение врача клиники
+                </ButtonLink>
+              </article>
+            </Reveal>
+          </div>
+        </div>
+      </section>
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: "K‑Medical Doctor", provider: { "@type": "Organization", name: "K‑Medical", url: baseUrl }, description: metadata.description }} />
     </main>
   );
