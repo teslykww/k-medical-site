@@ -52,7 +52,7 @@ export function Header() {
           href="/diagnostic#form"
           onClick={() => trackEvent("cta_click", { placement: "header" })}
         >
-          Обсудить задачу
+          Обсудить продвижение
           <ArrowUpRight aria-hidden size={16} weight="regular" />
         </Link>
 
@@ -85,7 +85,7 @@ export function Header() {
           </Link>
         ))}
         <Link className={styles.mobileNavCta} href="/diagnostic#form" onClick={() => setOpen(false)}>
-          Обсудить задачу
+          Обсудить продвижение
           <ArrowUpRight aria-hidden size={18} />
         </Link>
       </nav>
