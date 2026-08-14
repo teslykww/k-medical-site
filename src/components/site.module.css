@@ -1835,6 +1835,58 @@
   font-size: 0.79rem;
 }
 
+.productDetailTriggerService {
+  width: 100%;
+  min-height: 88px;
+  padding: 17px 3px;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  gap: 18px;
+  color: var(--foreground);
+  text-align: left;
+  transition: color 180ms ease, border-color 180ms ease, padding-left 220ms var(--ease-out);
+}
+
+.productDetailTriggerService:hover {
+  padding-left: 10px;
+  border-color: var(--brand);
+  color: var(--brand);
+  background: transparent;
+}
+
+.productDetailTriggerCopy {
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.productDetailTriggerCopy strong {
+  font-size: 1rem;
+  font-weight: 720;
+  line-height: 1.25;
+}
+
+.productDetailTriggerCopy small {
+  max-width: 52ch;
+  color: var(--foreground-muted);
+  font-size: 0.76rem;
+  font-weight: 520;
+  line-height: 1.5;
+}
+
+.productDetailTriggerService > svg {
+  box-sizing: content-box;
+  flex: 0 0 auto;
+  padding: 9px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+}
+
+.productDetailTriggerService:hover > svg {
+  border-color: var(--brand);
+}
+
 .productDialog {
   width: 100vw;
   max-width: none;
@@ -2250,6 +2302,28 @@
 }
 
 @media (max-width: 767px) {
+  .productDetailTriggerService {
+    min-height: 94px;
+    padding-block: 16px;
+    gap: 12px;
+  }
+
+  .productDetailTriggerService:hover {
+    padding-left: 3px;
+  }
+
+  .productDetailTriggerCopy strong {
+    font-size: 0.94rem;
+  }
+
+  .productDetailTriggerCopy small {
+    font-size: 0.72rem;
+  }
+
+  .productDetailTriggerService > svg {
+    padding: 7px;
+  }
+
   .productDrawer {
     width: 100%;
   }

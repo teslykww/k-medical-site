@@ -13,12 +13,14 @@ import styles from "./site.module.css";
 type Props = {
   detail: ProductDetail;
   label?: string;
-  variant?: "default" | "inverse" | "compact";
+  description?: string;
+  variant?: "default" | "inverse" | "compact" | "service";
 };
 
 export function ProductDetailsTrigger({
   detail,
   label = "Что входит",
+  description,
   variant = "default",
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -98,7 +100,12 @@ export function ProductDetailsTrigger({
         onClick={openDetails}
         aria-haspopup="dialog"
       >
-        <span>{label}</span>
+        {variant === "service" ? (
+          <span className={styles.productDetailTriggerCopy}>
+            <strong>{label}</strong>
+            {description ? <small>{description}</small> : null}
+          </span>
+        ) : <span>{label}</span>}
         <ArrowRight aria-hidden size={17} />
       </button>
 
@@ -140,17 +147,21 @@ export function ProductDetailsTrigger({
                 <p id={descriptionId} className={styles.productDrawerLead}>{detail.lead}</p>
               </motion.div>
 
-              <motion.div
-                className={styles.productDrawerCommercial}
-                initial={motionInitial}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ ...motionTransition, delay: reduceMotion ? 0 : 0.08 }}
-              >
-                <strong>{detail.price}</strong>
-                <ul>
-                  {detail.terms.map((term) => <li key={term}>{term}</li>)}
-                </ul>
-              </motion.div>
+              {detail.price || detail.commercialLabel || detail.terms?.length ? (
+                <motion.div
+                  className={styles.productDrawerCommercial}
+                  initial={motionInitial}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ ...motionTransition, delay: reduceMotion ? 0 : 0.08 }}
+                >
+                  <strong>{detail.price ?? detail.commercialLabel}</strong>
+                  {detail.terms?.length ? (
+                    <ul>
+                      {detail.terms.map((term) => <li key={term}>{term}</li>)}
+                    </ul>
+                  ) : null}
+                </motion.div>
+              ) : null}
             </header>
 
             <div className={styles.productDrawerBody}>
@@ -231,7 +242,10 @@ export function ProductDetailsTrigger({
             </div>
 
             <footer className={styles.productDrawerFooter}>
-              <div><span>Стоимость</span><strong>{detail.price}</strong></div>
+              <div>
+                <span>{detail.footerLabel ?? "Стоимость"}</span>
+                <strong>{detail.footerValue ?? detail.price}</strong>
+              </div>
               <TrackedLink
                 href={detail.cta.href}
                 className={`${styles.button} ${styles.buttonLight} ${styles.productDrawerCta}`}

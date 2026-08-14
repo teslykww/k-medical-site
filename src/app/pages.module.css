@@ -1310,6 +1310,136 @@
   text-align: center;
 }
 
+.channelServicesCatalog {
+  margin-top: clamp(76px, 9vw, 124px);
+  padding-top: clamp(54px, 7vw, 86px);
+  border-top: 1px solid var(--border);
+}
+
+.channelServicesHeader {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+.channelServicesHeader > div {
+  grid-column: span 7;
+  padding: clamp(8px, 2vw, 22px) clamp(12px, 3vw, 38px) clamp(26px, 4vw, 46px) 0;
+}
+
+.channelServicesHeader h3 {
+  max-width: 13ch;
+  color: var(--brand);
+  font-family: var(--font-editorial), serif;
+  font-size: clamp(2.35rem, 4.8vw, 4.85rem);
+  font-weight: 430;
+  letter-spacing: -0.05em;
+  line-height: 0.99;
+  text-wrap: balance;
+}
+
+.channelServicesHeader > div p {
+  max-width: 58ch;
+  margin-top: 28px;
+  color: var(--foreground-muted);
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.7;
+}
+
+.channelServicesHeader aside {
+  grid-column: span 5;
+  min-height: 330px;
+  padding: clamp(30px, 4vw, 48px);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+  color: var(--surface);
+  background:
+    radial-gradient(circle at 94% 6%, rgb(217 103 72 / 24%), transparent 34%),
+    var(--brand);
+  box-shadow: 0 24px 64px rgb(5 42 31 / 11%);
+}
+
+.channelServicesHeader aside strong {
+  max-width: 16ch;
+  font-size: clamp(1.45rem, 2.2vw, 2.2rem);
+  font-weight: 620;
+  letter-spacing: -0.035em;
+  line-height: 1.14;
+}
+
+.channelServicesHeader aside p {
+  max-width: 48ch;
+  color: color-mix(in srgb, var(--surface) 78%, transparent);
+  line-height: 1.65;
+}
+
+.channelServicesHeader aside span {
+  padding-top: 18px;
+  border-top: 1px solid rgb(255 255 255 / 20%);
+  color: color-mix(in srgb, var(--surface) 66%, transparent);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.channelServiceMosaic {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.channelServiceGroup {
+  grid-column: span 7;
+  padding: clamp(28px, 4vw, 46px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.channelServiceGroup:nth-child(2) {
+  grid-column: span 5;
+  margin-top: 72px;
+  background: var(--surface-muted);
+}
+
+.channelServiceGroup:nth-child(3) {
+  grid-column: 3 / span 8;
+  margin-top: 10px;
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--accent) 7%, transparent), transparent 38%),
+    var(--surface);
+}
+
+.channelServiceGroup header {
+  min-height: 138px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.channelServiceGroup h4 {
+  color: var(--brand);
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.channelServiceGroup header p {
+  max-width: 52ch;
+  color: var(--foreground-muted);
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+
+.channelServiceList {
+  border-bottom: 1px solid var(--border);
+}
+
 .centerAction {
   margin-top: 42px;
   display: flex;
@@ -2045,6 +2175,7 @@
 
   .heroV2Grid,
   .innerHeroGrid,
+  .channelServicesHeader,
   .reportIntro,
   .directionPair,
   .audienceGrid,
@@ -2053,6 +2184,23 @@
   .twoColumnStatement,
   .formSection {
     grid-template-columns: 1fr;
+  }
+
+  .channelServicesHeader > div,
+  .channelServicesHeader aside,
+  .channelServiceGroup,
+  .channelServiceGroup:nth-child(2),
+  .channelServiceGroup:nth-child(3) {
+    grid-column: auto;
+  }
+
+  .channelServiceMosaic {
+    grid-template-columns: 1fr;
+  }
+
+  .channelServiceGroup:nth-child(2),
+  .channelServiceGroup:nth-child(3) {
+    margin-top: 0;
   }
 
   .heroV2Copy h1,
@@ -2090,6 +2238,38 @@
 }
 
 @media (max-width: 767px) {
+  .channelServicesCatalog {
+    margin-top: 68px;
+    padding-top: 48px;
+  }
+
+  .channelServicesHeader h3 {
+    max-width: none;
+    font-size: clamp(2.35rem, 12vw, 3.55rem);
+  }
+
+  .channelServicesHeader > div {
+    padding: 0 0 12px;
+  }
+
+  .channelServicesHeader aside {
+    min-height: 0;
+    padding: 28px;
+  }
+
+  .channelServiceMosaic {
+    margin-top: 20px;
+  }
+
+  .channelServiceGroup {
+    padding: 26px 22px;
+  }
+
+  .channelServiceGroup header {
+    min-height: 0;
+    padding-bottom: 24px;
+  }
+
   .focusedProductFooter {
     align-items: stretch;
     flex-direction: column;

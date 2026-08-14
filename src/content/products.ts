@@ -1,6 +1,6 @@
-import type { ProductDetail, ProductDetailId } from "./types";
+import type { CoreProductDetailId, ProductDetail } from "./types";
 
-export const productDetails: Record<ProductDetailId, ProductDetail> = {
+export const productDetails: Record<CoreProductDetailId, ProductDetail> = {
   "clinic-focus": {
     id: "clinic-focus",
     segment: "Для частных клиник",

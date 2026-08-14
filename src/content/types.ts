@@ -51,10 +51,10 @@ export type PricingPlan = {
   description: string;
   features: string[];
   highlighted?: boolean;
-  detailId?: ProductDetailId;
+  detailId?: CoreProductDetailId;
 };
 
-export type ProductDetailId =
+export type CoreProductDetailId =
   | "clinic-focus"
   | "clinic-growth"
   | "clinic-system"
@@ -71,6 +71,23 @@ export type ProductDetailId =
   | "doctor-growth"
   | "doctor-authority";
 
+export type ChannelDetailId =
+  | "channel-direct"
+  | "channel-target"
+  | "channel-seo"
+  | "channel-maps"
+  | "channel-medical-platforms"
+  | "channel-sites"
+  | "channel-reputation"
+  | "channel-doctors"
+  | "channel-smm"
+  | "channel-video"
+  | "channel-crm"
+  | "channel-analytics"
+  | "channel-calltracking";
+
+export type ProductDetailId = CoreProductDetailId | ChannelDetailId;
+
 export type ProductScopeGroup = {
   title: string;
   items: string[];
@@ -82,8 +99,9 @@ export type ProductDetail = {
   name: string;
   title: string;
   lead: string;
-  price: string;
-  terms: string[];
+  price?: string;
+  terms?: string[];
+  commercialLabel?: string;
   audience: string;
   outcome: string;
   scope: ProductScopeGroup[];
@@ -92,6 +110,8 @@ export type ProductDetail = {
   rationale: string;
   alternative: string;
   exclusions?: string;
+  footerLabel?: string;
+  footerValue?: string;
   cta: {
     label: string;
     href: string;

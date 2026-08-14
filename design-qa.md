@@ -110,3 +110,13 @@ Post-fix desktop and mobile captures show the corrected hierarchy. The route ima
 - The dialog is portalled to the document top layer so pricing-card styles cannot leak into the detailed content.
 - `prefers-reduced-motion`, coarse pointer and narrow-screen fallbacks are explicit. No decorative product image was introduced because the detailed service content benefits more from clear hierarchy and uninterrupted reading.
 - Lint, typecheck and production build pass; all 19 static pages remain generated. The private Pilot product is absent from public source content and UI.
+
+### Pass 8 — standalone channel catalog
+
+- Added 13 standalone services inside the existing early `#services` section without moving, redesigning or duplicating the recurring packages and fixed-scope products.
+- Desktop 1440 × 1000 QA confirms the asymmetric 7/5/8-column composition, distinct surfaces, readable service rows and the intended visual continuation of the approved `Clinical navigation` direction.
+- Mobile 390 × 844 QA confirms a single-column sequence, readable two-level row labels, 13 interactive triggers and no horizontal overflow (`scrollWidth = clientWidth = 390` in the open drawer).
+- Opened the Yandex Direct service drawer on desktop and mobile. The correct service-specific title, scope framing and `Обсудить настройку` CTA render; no public price or `Стоимость` label appears.
+- Escape closes the drawer and returns focus to the initiating service row. Close button works on mobile. Browser console warnings/errors: none.
+- Hero channel typewriter now includes targeted advertising, SMM and YouTube/video while preserving one non-repeating motion surface.
+- Lint, typecheck and production build pass; all 19 static pages remain generated.

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArticleCard } from "@/components/ArticleCard";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Cases } from "@/components/Cases";
+import { ChannelServicesCatalog } from "@/components/ChannelServicesCatalog";
 import { ChannelTypewriter } from "@/components/ChannelTypewriter";
 import { CTASection } from "@/components/CTASection";
 import { FAQ } from "@/components/FAQ";
@@ -16,7 +17,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { articles } from "@/content/articles";
 import { productDetails } from "@/content/products";
 import { baseUrl, clinicFaq, clinicPlans, siteName } from "@/content/site";
-import type { ProductDetailId } from "@/content/types";
+import type { CoreProductDetailId } from "@/content/types";
 import styles from "./pages.module.css";
 
 export const metadata: Metadata = {
@@ -51,7 +52,7 @@ const focusedProducts = [
     price: "120 000 ₽",
     text: "Помогаем получать больше записей из уже оплаченных звонков и заявок: пропущенные, скорость ответа, повторные касания и контроль обработки.",
   },
-] satisfies Array<{ detailId: ProductDetailId; title: string; price: string; text: string }>;
+] satisfies Array<{ detailId: CoreProductDetailId; title: string; price: string; text: string }>;
 
 export default function HomePage() {
   return (
@@ -127,6 +128,7 @@ export default function HomePage() {
             <article><h3>База и аналитика</h3><p>CRM‑маркетинг, рассылки и напоминания, возврат пациентов, контроль обращений, коллтрекинг, CRM / МИС, дашборды и автоматизация коммуникаций.</p></article>
           </div>
           <p className={styles.serviceNote}>Не обязательно покупать всё сразу. Состав работы зависит от задачи клиники.</p>
+          <ChannelServicesCatalog />
         </div>
       </section>
 
