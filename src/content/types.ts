@@ -26,7 +26,21 @@ export type TeamMember = {
   role: string;
   description: string;
   initials: string;
-  status: "confirmed" | "requires-confirmation";
+  status: "confirmed" | "demonstration";
+};
+
+export type CaseStudy = {
+  id: string;
+  label: string;
+  segment: string;
+  title: string;
+  result: string;
+  situation: string;
+  actions: string[];
+  outcome: string;
+  period: string;
+  source: string;
+  image: string;
 };
 
 export type PricingPlan = {
@@ -37,6 +51,71 @@ export type PricingPlan = {
   description: string;
   features: string[];
   highlighted?: boolean;
+  detailId?: CoreProductDetailId;
+};
+
+export type CoreProductDetailId =
+  | "clinic-focus"
+  | "clinic-growth"
+  | "clinic-system"
+  | "clinic-enterprise"
+  | "clinic-priorities"
+  | "clinic-analytics"
+  | "clinic-conversion"
+  | "clinic-readiness"
+  | "dental-focus"
+  | "dental-growth"
+  | "dental-system"
+  | "doctor-audit"
+  | "doctor-presence"
+  | "doctor-growth"
+  | "doctor-authority";
+
+export type ChannelDetailId =
+  | "channel-direct"
+  | "channel-target"
+  | "channel-seo"
+  | "channel-maps"
+  | "channel-medical-platforms"
+  | "channel-sites"
+  | "channel-reputation"
+  | "channel-doctors"
+  | "channel-smm"
+  | "channel-video"
+  | "channel-crm"
+  | "channel-analytics"
+  | "channel-calltracking";
+
+export type ProductDetailId = CoreProductDetailId | ChannelDetailId;
+
+export type ProductScopeGroup = {
+  title: string;
+  items: string[];
+};
+
+export type ProductDetail = {
+  id: ProductDetailId;
+  segment: string;
+  name: string;
+  title: string;
+  lead: string;
+  price?: string;
+  terms?: string[];
+  commercialLabel?: string;
+  audience: string;
+  outcome: string;
+  scope: ProductScopeGroup[];
+  deliverables: string[];
+  start: string;
+  rationale: string;
+  alternative: string;
+  exclusions?: string;
+  footerLabel?: string;
+  footerValue?: string;
+  cta: {
+    label: string;
+    href: string;
+  };
 };
 
 export type FAQItem = {
@@ -60,9 +139,16 @@ export type Article = {
   slug: string;
   title: string;
   description: string;
-  category: "Клиника" | "Стоматология" | "Врач" | "Аналитика" | "База пациентов";
+  category:
+    | "Клиники"
+    | "Стоматология"
+    | "Врачи"
+    | "Реклама"
+    | "Репутация"
+    | "Аналитика"
+    | "База пациентов";
   readingTime: string;
   publishedAt: string;
   sections: ArticleSection[];
+  cta: CTA;
 };
-

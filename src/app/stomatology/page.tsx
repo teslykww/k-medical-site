@@ -1,139 +1,109 @@
 import type { Metadata } from "next";
-import { ArticleCard } from "@/components/ArticleCard";
 import { ButtonLink } from "@/components/ButtonLink";
+import { Cases } from "@/components/Cases";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
-import { PatientJourney } from "@/components/PatientJourney";
-import { SectionHeading } from "@/components/SectionHeading";
-import { articles } from "@/content/articles";
-import { baseUrl } from "@/content/site";
+import { Pricing } from "@/components/Pricing";
+import { ReportPreview } from "@/components/ReportPreview";
+import { Reveal } from "@/components/motion/Reveal";
+import { baseUrl, dentalPlans } from "@/content/site";
 import styles from "../pages.module.css";
 
 export const metadata: Metadata = {
-  title: "Маркетинг стоматологии с аналитикой до лечения",
+  title: "Маркетинг стоматологий и привлечение пациентов",
   description:
-    "Выбираем прибыльные направления стоматологии, привлекаем пациентов и считаем путь от спроса до консультации, лечения и повтора.",
+    "Привлекаем платящих пациентов на имплантацию, ортопедию, ортодонтию и другие приоритетные услуги стоматологии.",
   alternates: { canonical: "/stomatology" },
 };
 
-const serviceRows = [
-  ["Спрос", "Яндекс Директ, SEO, карты, медицинские и локальные площадки, посадочные страницы — под выбранные направления и географию."],
-  ["Врачи и доверие", "Пересобираем страницы имплантологов, ортопедов и ортодонтов. Выносим реальные доказательства: опыт, подход, кейсы пациентов с согласиями, видео, отзывы, понятное объяснение этапов лечения."],
-  ["Конверсия в запись", "Смотрим звонки, скорость ответа, пропущенные, сценарии администраторов, запись и доходимость. Часто именно здесь прячется «неработающая реклама»."],
-  ["Конверсия в лечение", "Если клиника даёт данные, смотрим путь от первичной консультации к плану лечения и договору. Без этого нельзя понять реальный CAC по дорогим направлениям."],
-  ["База", "Незавершённые планы лечения, гигиена, контрольные визиты, профилактика, повторные пациенты — отдельный двигатель выручки, а не «рассылка когда-нибудь потом»."],
+const dentalServices = [
+  ["Привлечение новых пациентов", "Яндекс Директ", "SEO", "карты и геосервисы", "медицинские площадки", "локальные посадочные", "реклама конкретных услуг"],
+  ["Сайт и доверие", "страницы направлений", "страницы врачей", "отзывы", "фото / видео", "упаковка преимуществ", "ответы на вопросы до обращения"],
+  ["Входящие обращения", "учёт звонков и заявок", "коллтрекинг", "понятная история обращения", "контроль пропущенных", "повторное касание"],
+  ["Работа с базой", "незавершённые планы лечения", "повторная гигиена", "контрольные визиты", "реактивация пациентов", "персональные напоминания"],
 ];
 
 export default function StomatologyPage() {
   return (
     <main id="main-content">
-      <section className={styles.heroSimple}>
-        <div className={styles.heroSimpleInner}>
-          <h1>Загружаем прибыльные направления стоматологии пациентами — и считаем результат дальше заявки</h1>
-          <div className={styles.heroSimpleAside}>
-            <p>
-              Имплантация, ортопедия, ортодонтия и другие направления выбираем не по моде, а по спросу, марже и реальной мощности вашей клиники.
-            </p>
-            <div><ButtonLink href="/diagnostic#form" eventLabel="hero-stomatology">Разобрать маркетинг стоматологии</ButtonLink></div>
+      <section className={styles.innerHeroV2}>
+        <div className={`container ${styles.innerHeroGrid}`}>
+          <div>
+            <p className={styles.eyebrow}>Маркетинг стоматологий</p>
+            <h1>Приводим платящих пациентов в стоматологию — на услуги, которые вы хотите развивать</h1>
+            <p>Имплантация, ортопедия, ортодонтия, эстетика или комплексное лечение. Собираем рекламу, поиск, карты, отзывы, сайт и продвижение врачей в одну систему — чтобы поток пациентов был стабильнее и понятнее.</p>
+            <div className={styles.heroActions}>
+              <ButtonLink href="/diagnostic#form">Обсудить продвижение стоматологии</ButtonLink>
+              <ButtonLink href="#dental-services" variant="secondary">Посмотреть, что входит</ButtonLink>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className={`container ${styles.serviceColumns}`}>
-          <div className={styles.serviceIntro}>
-            <h2>В стоматологии легко купить дорогой трафик. Сложнее — превратить его в лечение</h2>
-            <p>
-              Пациент может кликнуть по рекламе, посмотреть сайт, сравнить врача, прочитать отзывы, позвонить, записаться, не прийти, прийти на консультацию — и ещё несколько недель принимать решение по плану лечения. Если считать только заявку, большая часть экономики остаётся за кадром.
-            </p>
-          </div>
-          <div className={styles.servicePath}>
-            <PatientJourney compact labels={["Поиск", "Сайт / карты", "Врач", "Звонок", "Консультация", "План лечения", "Решение", "Лечение", "Повтор"]} />
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-surface">
-        <div className={`container ${styles.serviceColumns}`}>
-          <div className={styles.serviceIntro}>
-            <h2>Не рекламируем всё меню</h2>
-            <p>
-              На старте выбираем 1–3 направления, где сходятся четыре вещи: достаточный спрос, нормальная маржа, сильный врач или продукт и свободная мощность. Только после этого решаем, какие каналы покупать и какие страницы строить.
-            </p>
-            <p>
-              Чаще всего это имплантация, ортопедия, ортодонтия, эстетическая стоматология, комплексные планы лечения — но конкретный выбор всегда зависит от вашей клиники.
-            </p>
-          </div>
-          <div className={styles.serviceRows}>
-            {serviceRows.map(([title, description], index) => (
-              <article className={styles.serviceRow} key={title}>
-                <span>0{index + 1}</span><h3>{title}</h3><p>{description}</p>
-              </article>
-            ))}
-          </div>
+          <div className={styles.innerHeroVisual}><ReportPreview src="/images/hero-system-v2.webp" alt="Абстрактная система продвижения стоматологии" label="Спрос, доверие и запись работают вместе" priority /></div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <SectionHeading title="Первые 90 дней" />
-          <div className={styles.timeline}>
-            {[
-              ["Дни 1–14", "Диагностика", "Экономика, загрузка врачей, данные, аудит рекламы, сайта, отзывов и звонков."],
-              ["Дни 15–30", "Подготовка", "Подготовка офферов, страниц, аналитики и рекламного контура."],
-              ["Дни 31–60", "Запуск", "Запуск и тестирование 1–3 направлений."],
-              ["Дни 61–90", "Оптимизация", "Оптимизация по качеству обращений, записи, визитам и деньгам — насколько позволяют данные."],
-            ].map(([period, title, text]) => (
-              <article key={period}><span>{period}</span><h3>{title}</h3><p>{text}</p></article>
-            ))}
-          </div>
+          <Reveal className={styles.sectionLead}>
+            <h2>Реклама стоматологии должна приводить не заявки в таблицу, а пациентов на приём и лечение</h2>
+            <p>Между рекламой и лечением пациент успевает сравнить клиники, посмотреть врача, прочитать отзывы, узнать цену, задать вопросы и несколько раз передумать.</p>
+            <p>Поэтому мы работаем не только с объявлением. Усиливаем весь путь до записи: где пациент вас находит, что он видит о клинике и враче, насколько понятно предложение и как быстро можно записаться.</p>
+          </Reveal>
+          <div className={styles.routeRibbon}><span>Поиск</span><span>Клиника</span><span>Врач</span><span>Обращение</span><span>Запись</span><span>Консультация</span><span>Лечение</span></div>
+          <p className={styles.routeCaption}>Каждый этап должен помогать пациенту сделать следующий шаг.</p>
         </div>
       </section>
 
       <section className="section section-muted">
-        <div className={`container ${styles.fitLayout}`}>
-          <article>
-            <h3>Кому подходит</h3>
-            <ul>
-              <li>Есть минимум одно направление, которое клиника хочет и может загрузить.</li>
-              <li>Есть бюджет отдельно на работу команды и отдельно на медиа.</li>
-              <li>Собственник готов смотреть не только CPL, но и записи, визиты и лечение.</li>
-              <li>Клиника готова дать доступ к ключевым данным.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>Кому не подходит</h3>
-            <p>
-              Если все врачи забиты на месяц вперёд, клиника хочет рекламировать 15 направлений сразу или никто не готов разбирать звонки и воронку — сначала исправляем систему, потом добавляем трафик.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="section">
         <div className="container">
-          <SectionHeading title="Материалы по стоматологии" />
-          <div className={styles.articleGrid}>
-            {articles.filter((article) => article.category === "Стоматология").map((article) => <ArticleCard key={article.slug} article={article} />)}
+          <Reveal className={styles.sectionLead}>
+            <h2>Продвигаем конкретные услуги и врачей, а не «стоматологию вообще»</h2>
+            <p>Имплантация, брекеты и терапия — разные продукты, разная аудитория и разная конкуренция. Для каждого направления нужны свои объявления, посадочные страницы, врачи, доказательства и сценарий записи.</p>
+          </Reveal>
+          <div className={styles.directionPair}>
+            <article><h3>Имплантация</h3><ul><li>поиск и Яндекс Директ</li><li>отдельная страница услуги</li><li>хирург / ортопед и их карточки</li><li>кейсы и фотографии работ с согласиями</li><li>отзывы</li><li>понятная консультация и следующий шаг</li></ul></article>
+            <article><h3>Ортодонтия</h3><ul><li>запросы родителей и взрослых пациентов</li><li>страницы брекетов / элайнеров</li><li>профиль ортодонта</li><li>контент о выборе метода</li><li>длительный цикл решения и повторные касания</li></ul></article>
           </div>
         </div>
       </section>
 
-      <CTASection cta={{
-        title: "Понять, какое направление стоматологии масштабировать первым",
-        description: "Разберём спрос, маржу, врачей, текущий трафик и путь пациента.",
-        label: "Записаться на диагностику",
-        href: "/diagnostic#form",
-      }} />
+      <section className="section" id="dental-services">
+        <div className="container">
+          <Reveal className={styles.sectionLead}><h2>Что берём на себя в продвижении стоматологии</h2></Reveal>
+          <div className={styles.capabilityMosaic}>
+            {dentalServices.map(([title, ...items]) => <article key={title}><h3>{title}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}
+          </div>
+          <p className={styles.bigStatement}>Настраиваем систему, в которой видно, кому уже ответили, какой запрос остался без ответа и с кем стоит связаться повторно.</p>
+        </div>
+      </section>
 
-      <JsonLd data={{
-        "@context": "https://schema.org",
-        "@type": "Service",
-        name: "Маркетинг стоматологии",
-        provider: { "@type": "Organization", name: "K‑Medical", url: baseUrl },
-        areaServed: "RU",
-        url: `${baseUrl}/stomatology`,
-      }} />
+      <section className="section section-surface">
+        <div className="container">
+          <Reveal className={styles.sectionLead}>
+            <h2>Вы видите не только стоимость заявки</h2>
+            <p>В отчёте собираем понятные для бизнеса показатели: сколько обращений пришло по каждому направлению, сколько людей записалось и какие каналы дают лучший результат.</p>
+            <p>Для дорогостоящего лечения при наличии данных клиники можно дополнительно связывать маркетинг с консультацией и оплатой.</p>
+          </Reveal>
+          <ReportPreview label="Пример отчётности стоматологии" />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className={`container ${styles.doctorBridge}`}>
+          <div><h2>Сильный врач помогает продавать клинику ещё до разговора с администратором</h2><p>Перед имплантацией, ортодонтией или большим планом лечения пациент почти всегда смотрит специалиста отдельно: опыт, отзывы, фотографии, видео, образование и то, как врач объясняет лечение.</p><p>Поэтому страницы и внешние профили ключевых врачей — часть маркетинга стоматологии, а не раздел «для галочки».</p><ButtonLink href="/doctor" variant="secondary">Посмотреть K‑Medical Doctor</ButtonLink></div>
+          <div className={styles.doctorStoryCard}><span>Врач</span><strong>Экспертиза становится видимой до записи</strong><p>Один цельный образ на сайте, в поиске, отзывах и медицинских сервисах.</p></div>
+        </div>
+      </section>
+
+      <section className="section section-muted" id="cases">
+        <div className="container"><Reveal className={styles.sectionLead}><h2>Примеры продвижения медицинских и стоматологических проектов</h2></Reveal><Cases compact /></div>
+      </section>
+
+      <section className="section">
+        <div className="container"><Reveal className={styles.sectionLead}><h2>Формат зависит от количества филиалов и услуг, которые вы продвигаете</h2></Reveal><Pricing plans={dentalPlans} /><p className={styles.pricingNote}>Рекламный бюджет — отдельно.</p><div className={styles.centerAction}><ButtonLink href="/diagnostic#form">Обсудить, какой формат подойдёт вашей стоматологии</ButtonLink></div></div>
+      </section>
+
+      <CTASection cta={{ title: "Расскажите, каких пациентов хотите привлекать больше", description: "Пришлите сайт стоматологии, город и направления, которые хотите развивать. Посмотрим текущую упаковку и рекламу и предложим следующий шаг.", label: "Обсудить продвижение стоматологии", href: "/diagnostic#form" }} />
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: "Маркетинг стоматологий", provider: { "@type": "Organization", name: "K‑Medical", url: baseUrl }, description: metadata.description }} />
     </main>
   );
 }

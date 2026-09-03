@@ -5,12 +5,22 @@ import { TrackedLink } from "./TrackedLink";
 import styles from "./site.module.css";
 
 export function ArticleCard({ article, featured = false }: { article: Article; featured?: boolean }) {
+  const imageByCategory = {
+    Клиники: "/images/analytics-report-v2.webp",
+    Стоматология: "/images/hero-system-v2.webp",
+    Врачи: "/images/editorial-route-texture.png",
+    Реклама: "/images/analytics-report-v2.webp",
+    Репутация: "/images/hero-system-v2.webp",
+    Аналитика: "/images/analytics-report-v2.webp",
+    "База пациентов": "/images/diagnostic-report-v2.webp",
+  } as const;
+
   return (
     <article className={`${styles.articleCard} ${featured ? styles.articleFeatured : ""}`}>
       <div className={styles.articleImage}>
         <Image
-          src="/images/editorial-route-texture.png"
-          alt="Абстрактная схема маршрута пациента"
+          src={imageByCategory[article.category]}
+          alt="Редакционная иллюстрация к материалу"
           width={1400}
           height={1000}
           sizes={featured ? "(max-width: 767px) 100vw, 58vw" : "(max-width: 767px) 100vw, 31vw"}
@@ -36,4 +46,3 @@ export function ArticleCard({ article, featured = false }: { article: Article; f
     </article>
   );
 }
-

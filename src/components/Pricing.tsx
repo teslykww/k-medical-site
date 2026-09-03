@@ -1,17 +1,25 @@
 import { Check } from "@phosphor-icons/react/dist/ssr";
+import { productDetails } from "@/content/products";
 import { doctorPlans } from "@/content/site";
+import type { PricingPlan } from "@/content/types";
 import { ButtonLink } from "./ButtonLink";
+import { ProductDetailsTrigger } from "./ProductDetailsTrigger";
 import styles from "./site.module.css";
 
-export function Pricing() {
+type PricingProps = {
+  plans?: PricingPlan[];
+  ctaHref?: string;
+};
+
+export function Pricing({ plans = doctorPlans, ctaHref = "/diagnostic#form" }: PricingProps) {
   return (
     <div className={styles.pricingGrid}>
-      {doctorPlans.map((plan) => (
+      {plans.map((plan) => (
         <article
           key={plan.name}
           className={`${styles.pricingCard} ${plan.highlighted ? styles.pricingHighlighted : ""}`}
         >
-          {plan.highlighted ? <span className={styles.pricingMarker}>Основной продукт</span> : null}
+          {plan.highlighted ? <span className={styles.pricingMarker}>Основной формат</span> : null}
           <h3>{plan.name}</h3>
           <p className={styles.price}>{plan.price}</p>
           <p>{plan.description}</p>
@@ -27,17 +35,21 @@ export function Pricing() {
               </li>
             ))}
           </ul>
-          <ButtonLink
-            href="/diagnostic#form"
-            variant={plan.highlighted ? "primary" : "secondary"}
-            event="pricing_cta_click"
-            eventLabel={plan.name}
-          >
-            Обсудить формат
-          </ButtonLink>
+          <div className={styles.pricingActions}>
+            {plan.detailId ? (
+              <ProductDetailsTrigger detail={productDetails[plan.detailId]} />
+            ) : null}
+            <ButtonLink
+              href={ctaHref}
+              variant={plan.highlighted ? "primary" : "secondary"}
+              event="pricing_cta_click"
+              eventLabel={plan.name}
+            >
+              Обсудить формат
+            </ButtonLink>
+          </div>
         </article>
       ))}
     </div>
   );
 }
-

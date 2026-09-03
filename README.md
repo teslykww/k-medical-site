@@ -23,4 +23,4 @@ This runs lint, TypeScript checks and a production build.
 
 Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_LEAD_FORM_ENDPOINT`, add confirmed contacts and legal documents, confirm team details and assets, and connect analytics IDs. Vercel's public project URL is detected automatically, while `robots.txt` keeps indexing blocked until `NEXT_PUBLIC_ALLOW_INDEXING=true` is explicitly configured.
 
-See `design-qa.md` and the root `project-docs` folder for decisions and visual evidence.
+See `PRODUCT-PASS.md` for the current product ladder, and `design-qa.md` plus the root `project-docs` folder for decisions and visual evidence.

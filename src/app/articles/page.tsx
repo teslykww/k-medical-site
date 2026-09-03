@@ -4,9 +4,9 @@ import { articles } from "@/content/articles";
 import styles from "../pages.module.css";
 
 export const metadata: Metadata = {
-  title: "Материалы о маркетинге частной медицины",
+  title: "Практика медицинского маркетинга",
   description:
-    "Практические материалы K‑Medical о пути пациента, маркетинге стоматологии, цифровом присутствии врача, аналитике и базе пациентов.",
+    "Разбираем рекламу, сайты, врачей, репутацию, аналитику и работу с пациентской базой — на конкретных примерах и без рекламного жаргона.",
   alternates: { canonical: "/articles" },
 };
 
@@ -15,10 +15,16 @@ export default function ArticlesPage() {
     <main id="main-content">
       <section className={styles.articlesHero}>
         <div className="container">
-          <h1>Материалы для собственников клиник и сильных врачей</h1>
+          <p className={styles.eyebrow}>Статьи K‑Medical</p>
+          <h1>Практика медицинского маркетинга: как привлекать пациентов и не сливать бюджет</h1>
           <p>
-            Разбираем маркетинг по механике: от спроса и выбора направления до записи, лечения, оплаты и повторного визита.
+            Разбираем рекламу, сайты, врачей, репутацию, аналитику и работу с пациентской базой — на конкретных примерах и без рекламного жаргона.
           </p>
+          <div className={styles.categoryChips} aria-label="Категории статей">
+            {["Клиники", "Стоматология", "Врачи", "Реклама", "Репутация", "Аналитика", "База пациентов"].map((category) => (
+              <span key={category}>{category}</span>
+            ))}
+          </div>
         </div>
       </section>
       <section className="section section-surface">

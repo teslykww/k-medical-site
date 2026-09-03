@@ -5,17 +5,19 @@ import { FormEvent, useRef, useState } from "react";
 import { getAttributionParams, trackEvent } from "@/lib/analytics";
 import styles from "./site.module.css";
 
-type FormState = "idle" | "submitting" | "success" | "error" | "not-configured";
+type FormState = "idle" | "submitting" | "success" | "error";
+type LeadFormContext = "diagnostic" | "doctor";
 
-export function LeadForm() {
+export function LeadForm({ context = "diagnostic" }: { context?: LeadFormContext }) {
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
   const started = useRef(false);
+  const isDoctor = context === "doctor";
 
   function handleStart() {
     if (started.current) return;
     started.current = true;
-    trackEvent("form_start", { form: "diagnostic" });
+    trackEvent("form_start", { form: context });
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -27,10 +29,8 @@ export function LeadForm() {
 
     const endpoint = process.env.NEXT_PUBLIC_LEAD_FORM_ENDPOINT;
     if (!endpoint) {
-      setState("not-configured");
-      setMessage(
-        "Форма подготовлена, но канал доставки ещё не подключён. Команда добавит CRM или другой подтверждённый endpoint перед публикацией.",
-      );
+      setState("error");
+      setMessage("Не удалось отправить запрос. Попробуйте ещё раз позже.");
       return;
     }
 
@@ -48,36 +48,51 @@ export function LeadForm() {
       if (!response.ok) throw new Error("Delivery failed");
 
       setState("success");
-      setMessage("Спасибо. Запрос доставлен, команда свяжется с вами по указанному контакту.");
-      trackEvent("form_submit", { form: "diagnostic", status: "success" });
+      setMessage("Спасибо. Получили заявку. Свяжемся с вами и договоримся о коротком знакомстве.");
+      trackEvent("form_submit", { form: context, status: "success" });
       form.reset();
     } catch {
       setState("error");
-      setMessage("Не удалось доставить запрос. Попробуйте ещё раз или используйте подтверждённый контакт команды.");
-      trackEvent("form_submit", { form: "diagnostic", status: "error" });
+      setMessage("Не удалось отправить запрос. Попробуйте ещё раз позже.");
+      trackEvent("form_submit", { form: context, status: "error" });
     }
   }
 
   return (
     <form className={styles.leadForm} onSubmit={handleSubmit} onFocus={handleStart}>
+      <input type="hidden" name="lead_context" value={context} />
       <div className={styles.formRow}>
         <label>
           <span>Ваше имя</span>
           <input name="name" autoComplete="name" required minLength={2} />
         </label>
         <label>
-          <span>Телефон или email</span>
-          <input name="contact" autoComplete="email" required minLength={5} />
+          <span>Телефон или Telegram</span>
+          <input name="contact" autoComplete="tel" required minLength={5} />
         </label>
       </div>
       <label>
-        <span>Клиника и задача</span>
+        <span>{isDoctor ? "Врач, клиника или город" : "Клиника или город"}</span>
+        <input
+          name="clinic"
+          autoComplete="organization"
+          required
+          minLength={2}
+          placeholder={isDoctor ? "Например: ортодонт, Москва или название клиники" : undefined}
+        />
+      </label>
+      <label>
+        <span>{isDoctor ? "Что хотите получить от продвижения?" : "Что хотите улучшить?"}</span>
         <textarea
           name="context"
           rows={5}
           required
           minLength={10}
-          placeholder="Коротко опишите направление, текущую ситуацию и что хотите изменить"
+          placeholder={
+            isDoctor
+              ? "Например: я врач, хочу больше записей на конкретные услуги; хотим продвигать имплантолога клиники; нужен аудит текущего цифрового присутствия."
+              : "Например: хотим увеличить поток на имплантацию; реклама есть, но результат нестабилен; хотим продвинуть нескольких врачей."
+          }
         />
       </label>
       <div className={styles.formHoneypot} aria-hidden>
@@ -93,7 +108,7 @@ export function LeadForm() {
         </span>
       </label>
       <button className={styles.formSubmit} type="submit" disabled={state === "submitting"}>
-        {state === "submitting" ? "Отправляем…" : "Обсудить диагностику"}
+        {state === "submitting" ? "Отправляем…" : isDoctor ? "Обсудить продвижение" : "Обсудить задачу"}
         <ArrowRight aria-hidden size={18} />
       </button>
       {message ? (
