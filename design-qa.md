@@ -127,3 +127,15 @@ Post-fix desktop and mobile captures show the corrected hierarchy. The route ima
 - Removed media, native advertising and bloggers from the first high-level card while leaving them available where a specific task requires them.
 - Added a restrained bold lead inside each card so the channel set is scannable without turning the block into a menu of tools.
 - Strengthened the closing note around starting with the directions and tasks that can create the greatest current effect for the clinic.
+
+### Pass 10 — client homepage flow
+
+- Preserved the approved `Clinical navigation` hero, palette, typography, team, channel drawer and pricing components while changing only the homepage narrative and section order.
+- Added the editorial `Почему медицина особенная` bridge and replaced the long sticky story stack with a compact connected `Привлечение → Доверие → Возврат` sequence.
+- Removed the three repeated outcome cards from the homepage without removing their shared styles from Doctor, where the same pattern is still intentional.
+- Reduced the high-level service cards to outcomes and short mechanisms; the complete 13-channel catalog remains the single detailed tool layer below.
+- Reordered the commercial flow to recurring formats → fixed-scope products → diagnostic → retained reference cases.
+- Expanded the diagnostic card with five deliverables, 150 000 ₽, up to 10 working days and the 100 000 ₽ credit condition.
+- Desktop and 390 px mobile browser QA confirm the intended hierarchy, vertical mobile connectors and no horizontal overflow. The diagnostic mobile grid was corrected after the first visual pass and rechecked at `scrollWidth = clientWidth = 375` CSS px.
+- A duplicate below-fold use of the hero asset was replaced with the existing patient-journey illustration in the local-search reference case; the actual hero now renders with explicit eager/high-priority loading and a clean fresh-page console.
+- Lint, typecheck and the Next.js production build pass; all 19 static pages remain generated.

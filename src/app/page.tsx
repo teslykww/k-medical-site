@@ -54,6 +54,14 @@ const focusedProducts = [
   },
 ] satisfies Array<{ detailId: CoreProductDetailId; title: string; price: string; text: string }>;
 
+const diagnosticOutcomes = [
+  "Где клиника теряет пациентов",
+  "Какие точки роста стоит использовать первыми",
+  "Какие задачи поставить в приоритет",
+  "Какие инструменты подходят под текущую ситуацию",
+  "План действий на следующий период",
+];
+
 export default function HomePage() {
   return (
     <main id="main-content">
@@ -78,18 +86,25 @@ export default function HomePage() {
         <div className={`container ${styles.channelLine}`}><ChannelTypewriter /></div>
       </section>
 
-      <section className="section">
+      <section className={`section ${styles.outcomeIntroSection}`}>
         <div className="container">
           <Reveal className={styles.sectionLead}>
             <h2>Вам нужны не лиды. Вам нужны пациенты, которые записываются, приходят и платят</h2>
             <p>Можно получить красивый отчёт с низкой ценой заявки — и не почувствовать этого в клинике.</p>
             <p>Поэтому мы смотрим, откуда приходят обращения, сколько людей записываются, какие услуги и врачи получают больше спроса и какие каналы действительно стоит масштабировать.</p>
           </Reveal>
-          <div className={styles.outcomeGrid}>
-            <Reveal delay={0.04}><article><span>01</span><h3>Больше новых пациентов</h3><p>Привлекаем спрос через Яндекс, поиск, карты, медицинские сервисы и другие каналы, которые подходят вашей клинике.</p></article></Reveal>
-            <Reveal delay={0.10}><article><span>02</span><h3>Больше записей из уже полученных обращений</h3><p>Настраиваем учёт звонков и заявок, чтобы входящие не терялись, а команда видела, с кем уже связались и кому нужно ответить или перезвонить.</p></article></Reveal>
-            <Reveal delay={0.16}><article><span>03</span><h3>Больше повторных обращений</h3><p>Работаем с пациентской базой: повторные визиты, незавершённые планы лечения, напоминания, реактивация и персональные сценарии коммуникации.</p></article></Reveal>
-          </div>
+        </div>
+      </section>
+
+      <section className={styles.medicineContextSection}>
+        <div className="container">
+          <Reveal>
+            <article className={styles.medicineContext}>
+              <h2>Почему медицина особенная</h2>
+              <p className={styles.medicineContextLead}>В медицинском маркетинге недостаточно просто купить трафик.</p>
+              <p>Пациент выбирает не только услугу. Он выбирает клинику и врача. Поэтому на решение влияют репутация, отзывы, экспертность и то, насколько легко сделать следующий шаг к записи.</p>
+            </article>
+          </Reveal>
         </div>
       </section>
 
@@ -97,7 +112,6 @@ export default function HomePage() {
         <div className="container">
           <Reveal className={styles.sectionLead}>
             <h2>Три части маркетинга, которые должны работать вместе</h2>
-            <p>Новый пациент редко приходит из одной рекламной кнопки. Сначала он вас находит, потом сравнивает, читает отзывы, смотрит врача и только после этого решает записаться. А после первого визита отношения с ним не должны заканчиваться.</p>
           </Reveal>
           <MarketingStoryStack />
         </div>
@@ -124,25 +138,19 @@ export default function HomePage() {
           <Reveal className={styles.sectionLead}><h2>Вы можете передать нам весь основной маркетинг клиники</h2></Reveal>
           <div className={styles.serviceColumns}>
             <article>
+              <span className={styles.serviceCardLabel}>Привлечение</span>
               <h3>Привлекаем новых пациентов</h3>
-              <p className={styles.serviceCardCopy}>
-                <strong>Яндекс Директ, поиск, SEO, карты, медицинские площадки и посадочные страницы.</strong>
-                <span>Выбираем каналы под конкретные услуги и врачей, запускаем рекламу и перераспределяем бюджет туда, где получаем лучший результат.</span>
-              </p>
+              <p>Подключаем спрос на выбранные услуги и ведём пациента в понятную точку обращения.</p>
             </article>
             <article>
+              <span className={styles.serviceCardLabel}>Сайт и доверие</span>
               <h3>Помогаем пациенту выбрать вашу клинику и врача</h3>
-              <p className={styles.serviceCardCopy}>
-                <strong>Сайт, страницы услуг и врачей, отзывы, репутация, контент, видео и медицинские площадки.</strong>
-                <span>Пациент должен не просто увидеть рекламу, а понять, почему обратиться именно к вам и к конкретному специалисту.</span>
-              </p>
+              <p>Помогаем пациенту понять предложение, увидеть сильных врачей и решиться на обращение.</p>
             </article>
             <article>
+              <span className={styles.serviceCardLabel}>База и управление</span>
               <h3>Возвращаем пациентов и показываем, что реально работает</h3>
-              <p className={styles.serviceCardCopy}>
-                <strong>CRM‑маркетинг, рассылки и напоминания, повторные обращения, контроль звонков и заявок, CRM / МИС и аналитика.</strong>
-                <span>Возвращаем пациентов из текущей базы и показываем, какие источники дают обращения и записи и куда имеет смысл вкладывать бюджет дальше.</span>
-              </p>
+              <p>Связываем обращения, повторные коммуникации и данные, чтобы ни один канал не жил отдельно от клиники.</p>
             </article>
           </div>
           <p className={styles.serviceNote}><strong>Не обязательно подключать всё сразу. Начинаем с тех направлений и задач, которые сейчас дадут клинике наибольший эффект.</strong></p>
@@ -157,28 +165,6 @@ export default function HomePage() {
             <p>Стратегия, реклама, SEO, сайт, аналитика, репутация и контент работают по одному плану. Вам не нужно отдельно объяснять задачу директологу, разработчику, SEO‑специалисту и SMM‑команде.</p>
           </Reveal>
           <Team />
-        </div>
-      </section>
-
-      <section className="section" id="cases">
-        <div className="container">
-          <Reveal className={styles.sectionLead}>
-            <h2>Что уже делала команда в медицинском маркетинге</h2>
-            <p>Показываем публичные референсы рынка и структуру доказательств, по которой оформляются задачи, действия, период и результат.</p>
-          </Reveal>
-          <Cases />
-        </div>
-      </section>
-
-      <section className="section section-muted">
-        <div className={`container ${styles.auditOffer}`}>
-          <div>
-            <p className={styles.eyebrow}>Если пока неясно, с чего начинать</p>
-            <h2>Диагностика маркетинга — 150 000 ₽</h2>
-            <p>За 10 рабочих дней разберём рекламу, сайт, врачей, карты, отзывы, входящие обращения, аналитику и базу — и покажем, что действительно стоит менять первым. Диагностика не обязательна, если задача уже понятна и клиника готова сразу к сопровождению.</p>
-            <ButtonLink href="/diagnostic">Посмотреть диагностику</ButtonLink>
-          </div>
-          <div className={styles.auditPrice}><strong>10 рабочих дней</strong><span>100 000 ₽ засчитываются при переходе в основное сопровождение</span></div>
         </div>
       </section>
 
@@ -241,6 +227,39 @@ export default function HomePage() {
             </div>
           </article>
           <div className={styles.centerAction}><ButtonLink href="/diagnostic#form" variant="secondary">Обсудить точечную задачу</ButtonLink></div>
+        </div>
+      </section>
+
+      <section className={`section section-muted ${styles.diagnosticOfferSection}`}>
+        <div className={`container ${styles.auditOffer} ${styles.auditOfferDetailed}`}>
+          <div className={styles.auditOfferCopy}>
+            <p className={styles.eyebrow}>Если пока неясно, с чего начинать</p>
+            <h2>Диагностика маркетинга клиники</h2>
+            <p>Разберём, где клиника теряет пациентов, что уже работает и куда направить усилия и бюджет в первую очередь.</p>
+            <p>За 10 рабочих дней изучим маркетинг, путь пациента и ключевые точки контакта, а затем соберём конкретный план запуска.</p>
+            <ButtonLink href="/diagnostic">Посмотреть диагностику</ButtonLink>
+          </div>
+          <aside className={styles.auditResult} aria-label="Результаты и условия диагностики">
+            <p className={styles.auditResultLabel}>На выходе вы получаете</p>
+            <ul>
+              {diagnosticOutcomes.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+            <div className={styles.auditTerms}>
+              <strong>150 000 ₽</strong>
+              <span>до 10 рабочих дней</span>
+            </div>
+            <p className={styles.auditCredit}>100 000 ₽ засчитываются при переходе в основное сопровождение.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section className="section" id="cases">
+        <div className="container">
+          <Reveal className={styles.sectionLead}>
+            <h2>Что уже делала команда в медицинском маркетинге</h2>
+            <p>Показываем публичные референсы рынка и структуру доказательств, по которой оформляются задачи, действия, период и результат.</p>
+          </Reveal>
+          <Cases />
         </div>
       </section>
 

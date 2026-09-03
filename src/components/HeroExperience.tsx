@@ -20,7 +20,8 @@ export function HeroExperience() {
         src="/images/hero-system-v2.webp"
         alt="Абстрактная система, в которой путь пациента проходит через последовательные точки контакта"
         fill
-        priority
+        fetchPriority="high"
+        loading="eager"
         sizes="(max-width: 767px) 100vw, 54vw"
       />
       <div className={styles.heroGlass} aria-hidden />

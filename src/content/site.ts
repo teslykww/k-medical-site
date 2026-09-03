@@ -111,7 +111,7 @@ export const referenceCases: CaseStudy[] = [
       "По данным автора кейса, клики «Позвонить» выросли на 124%. В собственном кейсе результат должен быть связан с записями.",
     period: "Период указан в первоисточнике",
     source: "Публичный кейс Panshin Group",
-    image: "/images/hero-system-v2.webp",
+    image: "/images/patient-journey-route.png",
   },
   {
     id: "doctor-brand",

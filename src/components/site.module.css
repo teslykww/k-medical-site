@@ -1446,80 +1446,132 @@
   animation: type-cursor 650ms steps(1, end) infinite;
 }
 
-.storyStack {
+.storyFlow {
   position: relative;
-  display: grid;
-  gap: 26px;
 }
 
-.storyCard {
-  position: sticky;
-  top: 88px;
-  min-height: 360px;
-  padding: clamp(34px, 5vw, 64px);
-  border: 1px solid color-mix(in srgb, var(--brand) 28%, var(--border));
-  border-radius: var(--radius-card);
+.storySequence {
   display: grid;
-  grid-template-columns: 82px 1fr;
-  gap: clamp(24px, 5vw, 72px);
-  align-items: start;
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.18fr) minmax(0, 0.88fr);
+  gap: clamp(42px, 5vw, 72px);
+  align-items: stretch;
+}
+
+.storySequenceItem {
+  position: relative;
+  min-width: 0;
+}
+
+.storyStep {
+  position: relative;
+  min-height: 318px;
+  height: 100%;
+  padding: clamp(28px, 3.4vw, 44px);
+  border: 1px solid color-mix(in srgb, var(--brand) 26%, var(--border));
+  border-radius: var(--radius-card);
   overflow: hidden;
   color: var(--foreground);
-  background:
-    radial-gradient(circle at 92% 12%, color-mix(in srgb, var(--brand) 11%, transparent), transparent 28%),
-    var(--surface);
-  box-shadow: 0 26px 70px color-mix(in srgb, var(--brand) 12%, transparent);
+  background: var(--surface);
+  box-shadow: 0 18px 52px color-mix(in srgb, var(--brand) 8%, transparent);
 }
 
-.storyCard:nth-child(2) {
-  top: 104px;
+.storySequenceItem:nth-child(2) .storyStep {
   color: var(--surface);
   background:
-    radial-gradient(circle at 88% 16%, color-mix(in srgb, var(--surface) 13%, transparent), transparent 30%),
+    radial-gradient(circle at 90% 12%, color-mix(in srgb, var(--surface) 12%, transparent), transparent 31%),
     var(--brand);
 }
 
-.storyCard:nth-child(3) {
-  top: 120px;
+.storySequenceItem:nth-child(3) .storyStep {
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--surface-muted) 84%, var(--surface)), var(--surface));
+    linear-gradient(145deg, color-mix(in srgb, var(--surface-muted) 86%, var(--surface)), var(--surface));
 }
 
-.storyCard > span {
+.storyLabel,
+.storyNumber {
+  display: block;
+}
+
+.storyLabel {
   color: var(--accent);
-  font-family: var(--font-editorial), serif;
-  font-size: clamp(2.4rem, 5vw, 4.8rem);
-  line-height: 0.9;
+  font-size: 0.78rem;
+  font-weight: 740;
+  letter-spacing: 0.025em;
 }
 
-.storyCard h3 {
+.storySequenceItem:nth-child(2) .storyLabel {
+  color: color-mix(in srgb, var(--surface) 72%, transparent);
+}
+
+.storyNumber {
+  margin-top: 34px;
+  color: color-mix(in srgb, var(--brand) 48%, var(--foreground-muted));
+  font-family: var(--font-editorial), serif;
+  font-size: 1rem;
+}
+
+.storySequenceItem:nth-child(2) .storyNumber {
+  color: color-mix(in srgb, var(--surface) 54%, transparent);
+}
+
+.storyStep h3 {
   max-width: 20ch;
-  font-size: clamp(1.8rem, 3.5vw, 3.6rem);
-  line-height: 1.06;
-  letter-spacing: -0.045em;
+  margin-top: 28px;
+  font-size: clamp(1.35rem, 2.1vw, 2.05rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
-.storyCard p {
-  max-width: 64ch;
-  margin-top: 22px;
+.storyStep p {
+  max-width: 42ch;
+  margin-top: 18px;
   color: var(--foreground-muted);
-  line-height: 1.68;
+  font-size: 0.9rem;
+  line-height: 1.64;
 }
 
-.storyCard p + p {
-  max-width: 55ch;
-  margin-top: 16px;
-  color: var(--foreground);
-  font-weight: 610;
-}
-
-.storyCard:nth-child(2) p {
+.storySequenceItem:nth-child(2) .storyStep p {
   color: color-mix(in srgb, var(--surface) 76%, transparent);
 }
 
-.storyCard:nth-child(2) p + p {
-  color: var(--surface);
+.storyConnector {
+  position: absolute;
+  z-index: 2;
+  right: clamp(-72px, -5vw, -42px);
+  top: calc(50% - 11px);
+  width: clamp(42px, 5vw, 72px);
+  display: grid;
+  place-items: center;
+  color: var(--brand);
+}
+
+.storyConnector::before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: color-mix(in srgb, var(--brand) 32%, var(--border));
+  content: "";
+}
+
+.storyConnector svg {
+  position: relative;
+  margin-left: auto;
+  background: var(--background);
+}
+
+.storyConclusion {
+  max-width: 690px;
+  margin: clamp(38px, 5vw, 64px) auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-strong);
+  color: var(--brand);
+  font-family: var(--font-editorial), serif;
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  line-height: 1.35;
+  text-align: center;
 }
 
 .reportPreview {
@@ -2402,28 +2454,32 @@
     font-size: 0.72rem;
   }
 
-  .storyStack {
-    gap: 14px;
+  .storySequence {
+    grid-template-columns: 1fr;
+    gap: 54px;
   }
 
-  .storyCard,
-  .storyCard:nth-child(2),
-  .storyCard:nth-child(3) {
-    position: relative;
-    top: auto;
+  .storyStep {
     min-height: 0;
     padding: 28px;
-    grid-template-columns: 1fr;
-    gap: 24px;
     box-shadow: none;
   }
 
-  .storyCard > span {
-    font-size: 2rem;
+  .storyConnector {
+    right: auto;
+    left: calc(50% - 21px);
+    top: auto;
+    bottom: -43px;
+    width: 42px;
   }
 
-  .storyCard h3 {
-    font-size: 1.8rem;
+  .storyConnector svg {
+    background: transparent;
+    transform: rotate(90deg);
+  }
+
+  .storyConclusion {
+    text-align: left;
   }
 
   .reportImage {
